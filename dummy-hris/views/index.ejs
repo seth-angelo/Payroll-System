@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dummy HRIS</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<form action="/save-profile" method="POST">
+		<br>
+		DUMMY HRIS
+		<br><br>
+		<div class="field">
+			<label>Name:</label> <input type="text" name="name">
+		</div>
+		
+		<div class="field">
+			<label>Tax Status:</label> <input type="text" name="tax_status">
+		</div>
+		<div class="field">
+			<label for="salary_type">Type of Salary Rate:</label>
+				<select name="salary_type" id="salary_type">
+					<option></option>
+					<option value="DRate">Daily Rate</option>
+					<option valur="HRate">Hourly Rate</option>
+				</select>
+		</div>
+		<div class="field">
+			Rate: <input type="text" name="rate">
+		</div>
+		<div class="field">
+			Unpaid Leave: <input type="text" name="unpaid_leave">
+		</div>
+		<div class="field">
+			Bonus: <input type="text" name="bonus">
+		</div>
+		<div class="field">
+			Insurance Rate: <input type="text" name="isr_rate">
+		</div>
+		<div class="field">
+			Penalties: <input type="text" name="penalties">
+		</div>
+		<button type="submit">SAVE</button>
+		<a href="/employees">Go to employees page</a>
+	</form>
+</body>
+</html>

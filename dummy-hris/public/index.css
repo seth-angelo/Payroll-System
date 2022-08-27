@@ -1,0 +1,20 @@
+form{
+	text-align: center;
+	border-color: yellow;
+}
+
+.profile {
+	border: 1px solid black;
+	width: 50%;
+	margin: auto;
+	margin-bottom: 16px;
+}
+
+.field {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 325px;
+	margin: auto;
+	margin-bottom: 16px;
+}
