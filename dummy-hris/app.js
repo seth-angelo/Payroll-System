@@ -62,23 +62,37 @@ app.post("/save-profile", (req, res) => {
 	console.log("body:", body);
 
 	console.log("name:", body.name);
+	console.log("position:", body.position);
+	console.log("department:", body.department);
 	console.log("tax status:", body.tax_status);
 	console.log("salary type:", body.salary_type);
+	console.log("total working days:", body.TWD);
+	console.log("total working hours:", body.TWH);
 	console.log("rate:", body.rate);
 	console.log("unpaid leave:", body.unpaid_leave);
+	console.log("taxable leave:", body.taxable_leave);
 	console.log("bonus:", body.bonus);
 	console.log("insurance rate:", body.isr_rate);
 	console.log("penalties:", body.penalties);
+	console.log("overtime hours:", body.overtime_hours);
+	console.log("undertime hours:", body.undertime_hours);
 
 	Profile.create({
-		name: body.name, 
+		name: body.name,
+		position: body.position,
+		department: body.department,
 		taxStatus: body.tax_status,
 		salaryType: body.salary_type,
+		TWDays: body.TWD,
+		TWHours: body.TWH,
 		rate: body.rate,
 		unpaidLeave: body.unpaid_leave,
+		taxableLeave: body.taxable_leave,
 		bonus: body.bonus,
 		insuranceRate: body.isr_rate,
-		penalties: body.penalties
+		penalties: body.penalties,
+		ovetimeHours: body.overtime_hours,
+		undertimeHours: body.undertime_hours
 	}, (err, profile) => {
 		if (err) {
 			console.log(err);

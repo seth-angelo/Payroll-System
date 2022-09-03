@@ -10,13 +10,20 @@
 	<% for(let profile of profiles) { %>
 	<div class="profile">
 		<h1>Name: <%= profile.name %></h1>
+		<h2>Position: <%= profile.position %></h2>
+		<h2>Department: <%= profile.department %></h2>
 		<h2>Tax Status: <%= profile.taxStatus %></h2>
 		<h2>Salary Type: <%= profile.salaryType %></h2>
+		<h2>Total Working Days: <%= profile.TWDays %></h2>
+		<h2>Total Working Hours: <%= profile.TWHours %></h2>
 		<h2>Rate: <%= profile.rate %></h2>
 		<h2>Unpaid Leave: <%= profile.unpaidLeave %></h2>
+		<h2>Taxable Leave: <%= profile.taxableLeave %></h2>
 		<h2>Bonus: <%= profile.bonus %></h2>
 		<h2>Insurance Rate: <%= profile.insuranceRate %></h2>
 		<h2>Penalties: <%= profile.penalties %></h2>
+		<h2>Overtime Hours: <%= profile.overtimeHours %></h2>
+		<h2>Undertime Hours: <%= profile.undertimeHours %></h2>
 	</div>
 		
 	<% } %>
