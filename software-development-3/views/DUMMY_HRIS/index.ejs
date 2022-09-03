@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dummy HRIS</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<form action="/save-profile" method="POST">
+		<br>
+		DUMMY HRIS
+		<br><br>
+		<div class="field">
+			<label>Name:</label> <input type="text" name="name">
+		</div>
+
+		<div class="field">
+			<label>Position:</label> <input type="text" name="position">
+		</div>
+		
+		<div class="field">
+			<label>Department:</label> <input type="text" name="department">
+		</div>
+
+		<div class="field">
+			<label>Tax Status:</label> <input type="text" name="tax_status">
+		</div>
+		<div class="field">
+			<label for="salary_type">Type of Salary Rate:</label>
+				<select name="salary_type" id="salary_type" onchange="salaryTypeChanged()">
+					<option></option>
+					<option value="DRate">Daily Rate</option>
+					<option value="HRate">Hourly Rate</option>
+				</select>
+		</div>
+
+		<div id="question"></div>
+
+		<div class="field">
+			Rate: <input type="text" name="rate">
+		</div>
+		<div class="field">
+			Unpaid Leave: <input type="text" name="unpaid_leave">
+		</div>
+		<div class="field">
+			Taxable Leave: <input type="text" name="taxable_leave">
+		</div>
+		<div class="field">
+			Bonus: <input type="text" name="bonus">
+		</div>
+		<div class="field">
+			Insurance Rate: <input type="text" name="isr_rate">
+		</div>
+		<div class="field">
+			Penalties: <input type="text" name="penalties">
+		</div>
+		<div class="field">
+			Ovetime Hours: <input type="text" name="overtime_hours">
+		</div>
+		<div class="field">
+			Undertime Hours: <input type="text" name="undertime_hours">
+		</div>
+		<button type="submit">SAVE</button>
+		<a href="/employees">Go to employees page</a>
+	</form>
+
+
+	<script>
+		
+		function salaryTypeChanged() {
+			const salaryType = document.getElementById('salary_type').value;
+			const question = document.getElementById('question');
+
+ 			console.log("salaryType:", salaryType);
+
+ 			if (salaryType === "DRate") {
+ 				question.innerHTML = `
+ 					<div class="field">
+						Total Working Days: <input type="text" name="TWD">
+					</div>
+ 				`
+ 			} else if (salaryType === "HRate") {
+ 				question.innerHTML = `
+ 					<div class="field">
+						Total Working Hours: <input type="text" name="TWH">
+					</div>
+ 				` 			} else {
+ 				question.innerText = ''
+ 			}
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div class="main">
+		<div class="first">
+			<% for(let profile of profiles) { %>
+				<button><%= profile.name %> <%= profile.position %></button>
+			<% } %>
+		</div>
+		<div class="second">
+		</div>
+	</div>
+</body>
+</html>
