@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 	<link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 	<div class="main">
 		<div class="sideBar">
 			<% for(let profile of profiles) { %>
-				<button><%= profile.name %> <%= profile.position %></button>
-			<% } %>
+				<button onclick="popup()">
+					<%= profile.name %>
+						<%= profile.position %>
+				</button>
+				<% } %>
 		</div>
 		<div class="second">
 		</div>
 	</div>
+	<button onclick="" ,>LOGIN</button>
+	<script src="../../app.js"> </script>
+	<script type="type/javascript"></script>
+
 </body>
+
 </html>

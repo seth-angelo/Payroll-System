@@ -10,15 +10,15 @@ const app = express();
 
 app.set("port", 5000);
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
+	bodyParser.urlencoded({
+		extended: true,
+	})
 );
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname + '/public')));
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header(
 		"Access-Control-Allow-Headers",
@@ -37,7 +37,8 @@ app.use(function (req, res, next) {
 // PATCH - update partial object
 // DELETE - delete object
 
-let mongoURI = "mongodb://localhost:27017/dummy-hris";
+// let mongoURI = "mongodb+srv://payroll:payrollPass@cluster0.pslbxgl.mongodb.net/test";
+let mongoURI = "mongodb://127.0.0.1:27017/dummy-hris";
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -46,12 +47,24 @@ mongoose.connect(mongoURI, {
 app.get("/", (req, res) => {
 	Profile.find({}, (err, fetchedProfiles) => {
 		if (err) {
-			console.log(err);
+			console.log(err); ``
 		} else {
-			res.render('Payroll_System/index', {profiles: fetchedProfiles});
+			res.render('Payroll_System/index', { profiles: fetchedProfiles });
 		}
 	})
 });
+
+// Authentication Page (Login)
+app.get("/login", (req, res) => {
+	res.render('Payroll_System/login');
+});
+
+// Forget Pass Page
+app.get("/login/forgetpass", (req, res) => {
+	res.send("<h2>This is a forget pass page.</h2>");
+});
+
+
 
 app.get("/hris", (req, res) => {
 	res.render('DUMMY_HRIS/index');
@@ -62,7 +75,7 @@ app.get("/employees", (req, res) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('DUMMY_HRIS/employee-profiles', {profiles: fetchedProfiles});
+			res.render('DUMMY_HRIS/employee-profiles', { profiles: fetchedProfiles });
 		}
 	})
 });
@@ -113,6 +126,4 @@ app.post("/save-profile", (req, res) => {
 });
 
 let port = app.get("port");
-let server = app.listen(5000, function () {
-	console.log("Dummy HRIS running on port", port);
-});
+app.listen(5000, () => console.log(`Dummy HRIS running on port ${port}`));
