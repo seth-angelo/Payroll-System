@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "npx nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,7 +17,8 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "method-override": "^3.0.0",
-    "mongoose": "^6.5.3",
+    "mongodb": "^4.9.1",
+    "mongoose": "^6.5.4",
     "nodemon": "^2.0.19",
     "path": "^0.12.7"
   }
