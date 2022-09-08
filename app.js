@@ -126,4 +126,4 @@ app.post("/save-profile", (req, res) => {
 });
 
 let port = app.get("port");
-app.listen(5000, () => console.log(`Dummy HRIS running on port ${port}`));
+app.listen(process.env.PORT || 5000, () => console.log(`Dummy HRIS running on port ${port}`));
