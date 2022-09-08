@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Authentication</title>
+    <title>Paystation | <%= title %>
+    </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="index.css">
@@ -14,18 +15,19 @@
     <main>
         <h1 class="title">PAYSTATION</h1>
         <div class="login">
-            <h1> Authentication LOGIN </h1>
-                <h4>Username</h4>
-            <input class="username", type="text">
-                <h4>Password</h4>
-            <input class="password", type="text">
-            <div></div>
-            <button class=" loginButton">Login</button>
-            <div><a href="forget password">Reset Password</a></div>
+            <h1> <%= title %> </h1>
+            <label for="username">Username</label><br>
+            <input name="username" type="text"> <br>
+            <br>
+            <label for="password">Password</label><br>
+            <input name="password" type="password"><br>
+            <br>
+            <a class="loginButton" href="/home"><button>LOGIN</button></a><br>
+            <br>
+            <a class="forgetpass" href="/forgetpass">Reset Password</a>
         </div>
     </main>
 
-    <script src=""></script>
 </body>
 
 </html>

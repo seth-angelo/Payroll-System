@@ -44,28 +44,45 @@ mongoose.connect(mongoURI, {
 	useUnifiedTopology: true,
 });
 
+/* ORIG */
+// app.get("/", (req, res) => {
+// 	Profile.find({}, (err, fetchedProfiles) => {
+// 		if (err) {
+// 			console.log(err); ``
+// 		} else {
+// 			res.render('Payroll_System/index', { profiles: fetchedProfiles, title: 'Home' });
+// 		}
+// 	})
+// });
+
+// // Authentication Page (Login)
+// app.get("/login", (req, res) => {
+// 	res.render('Payroll_System/login', {title: 'Authentication'});
+// });
+/* END ORIG */
+
+/* EDITED PART FOR HOMEPAGE */
 app.get("/", (req, res) => {
+	res.render('Payroll_System/login', { title: 'Authentication' });
+});
+// Authentication Page (Login)
+app.get("/home", (req, res) => {
 	Profile.find({}, (err, fetchedProfiles) => {
 		if (err) {
 			console.log(err); ``
 		} else {
-			res.render('Payroll_System/index', { profiles: fetchedProfiles });
+			res.render('Payroll_System/index', { profiles: fetchedProfiles, title: 'Home' });
 		}
 	})
 });
-
-// Authentication Page (Login)
-app.get("/login", (req, res) => {
-	res.render('Payroll_System/login');
-});
+/* END OF EDITED PART */
 
 // Forget Pass Page
-app.get("/login/forgetpass", (req, res) => {
-	res.send("<h2>This is a forget pass page.</h2>");
+app.get("/forgetpass", (req, res) => {
+	res.render('Payroll_System/forgetpass', { title: 'Reset Password' });
 });
 
-
-
+// For manually inserting data
 app.get("/hris", (req, res) => {
 	res.render('DUMMY_HRIS/index');
 });

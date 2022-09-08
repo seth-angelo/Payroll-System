@@ -35,14 +35,23 @@ form{
 }
 .login{
 	margin: auto;
-	
 	text-align: center;
 	padding-top: 50px;
 	width: 500px;
 	height: 300px;
-	border: 5px solid red;
+	border: 5px solid blueviolet;
 	border-radius: 7%;
 }
-* {
-	font-family: Garamond;
+.label{
+	margin: auto;
+}
+.reset, .back{
+	margin-top: 15px;
+	margin-left: 15px;
+}
+.loginButton{
+	background: #0515f8f3;
+	color: black;
+	border: 2px violet;
+	cursor: pointer;
 }
