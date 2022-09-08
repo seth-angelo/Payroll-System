@@ -38,7 +38,11 @@ app.use((req, res, next) => {
 // DELETE - delete object
 
 // let mongoURI = "mongodb+srv://payroll:payrollPass@cluster0.pslbxgl.mongodb.net/test";
-let mongoURI = "mongodb+srv://SethAngelo:16-0316-947@cluster0.pfzxzmh.mongodb.net/?retryWrites=true&w=majority";
+let mongoURI = "mongodb://127.0.0.1:27017/dummy-hris";
+
+if (process.env.NODE_ENV === 'prod') {
+	mongoURI = 'mongodb+srv://SethAngelo:16-0316-947@cluster0.pfzxzmh.mongodb.net/?retryWrites=true&w=majority'
+}
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
