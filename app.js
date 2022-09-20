@@ -44,7 +44,7 @@ let mongoURI = "mongodb://127.0.0.1:27017/dummy-hris";
 if (process.env.NODE_ENV === 'production') {
 	mongoURI = 'mongodb+srv://SethAngelo:16-0316-947@cluster0.pfzxzmh.mongodb.net/?retryWrites=true&w=majority'
 }
-console.log(mongoURI)
+//console.log(mongoURI)
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -71,11 +71,15 @@ mongoose.connect(mongoURI, {
 app.get("/", (req, res) => {
 	res.render('Payroll_System/login', { title: 'Authentication' });
 });
+app.get("/signup", (req, res) => {
+	console.log("signup");
+	res.render('Payroll_System/signup', { title: 'Authentication' });
+});
 // Authentication Page (Login)
 app.get("/home", (req, res) => {
 	Profile.find({}, (err, fetchedProfiles) => {
 		if (err) {
-			console.log(err); ``
+			console.log(err);
 		} else {
 			res.render('Payroll_System/index', { profiles: fetchedProfiles, title: 'Home' });
 		}
@@ -86,6 +90,10 @@ app.get("/home", (req, res) => {
 // Forget Pass Page
 app.get("/forgetpass", (req, res) => {
 	res.render('Payroll_System/forgetpass', { title: 'Reset Password' });
+});
+app.get("/forgotconfirmation", (req, res) => {
+	console.log("forgotconfirmation");
+	res.render('Payroll_System/forgotconfirmation', { title: 'Reset Password' });
 });
 
 app.get("/hris", (req, res) => {
