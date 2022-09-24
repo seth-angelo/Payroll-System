@@ -88,15 +88,29 @@
           <div class="employee-list" id="employee-list">
           	<div class="employee-btns">
           		<% for(let profile of profiles) { %>
-					<button>
-						<%= profile.name %>
+					<button class="profile-btn">
+						<div class="profile-name" data-name=<%= profile.name %>></div>
+						<div class="profile-position" data-position=<%= profile.position %>></div>
+						<div class="profile-taxStatus" data-taxstatus=<%= profile.taxStatus %>></div>
+						<div class="profile-salaryType" data-salarytype=<%= profile.salaryType %>></div>
+						<!-- <div class="profile-TWDays" data-twdays=<%= profile.TWDays %>></div>
+						<div class="profile-TWHours" data-twhours=<%= profile.TWHours %>></div> -->
+						<div class="profile-rate" data-rate=<%= profile.rate %>></div>
+						<div class="profile-bonus" data-bonus=<%= profile.bonus %>></div>
+						<div class="profile-unpaidLeave" data-unpaidleave=<%= profile.unpaidLeave %>></div>
+						<div class="profile-taxableLeave" data-taxableleave=<%= profile.taxableLeave %>></div>
+						<div class="profile-insuranceRate" data-insurancerate=<%= profile.insuranceRate %>></div>
+						<div class="profile-penalties" data-penalties=<%= profile.penalties %>></div>
+						<div class="profile-overtimeHours" data-overtimehours=<%= profile.overtimeHours %>></div>
+						<div class="profile-undertimeHours" data-undertimehours=<%= profile.undertimeHours %>></div>
+
+						<h1><%= profile.name %></h1>
 						<%= profile.position %>
 					</button>
 				<% } %>
           	</div>
           	
           	<div id="employee-info">
-          		
           	</div>
           </div>
         </div>
@@ -115,10 +129,60 @@
 		</div>
 	</div>
 	 <button onclick="" ,>LOGIN</button> -->
-	<script > 
-		const employeeBtn = document.getElementById('employee-btn');
+	<script>
+		const profileButtons = document.getElementsByClassName("profile-btn");
+		const profileNames = document.getElementsByClassName("profile-name");
+		const profilePositions = document.getElementsByClassName("profile-position");
+		const profileTaxStatuses = document.getElementsByClassName("profile-taxStatus");
+		const profileSalaryTypes = document.getElementsByClassName("profile-salaryType");
+		// const profilTWDayss = document.getElementsByClassName("profile-TWDays");
+		// const profileTWHourss = document.getElementsByClassName("profile-TWHours");
+		const profileRates = document.getElementsByClassName("profile-rate");
+		const profileUnpaidLeaves = document.getElementsByClassName("profile-unpaidLeave");
+		const profileTaxableLeaves = document.getElementById("profile-taxableLeave");
+		const profileBonuses = document.getElementsByClassName("profile-bonus");
+		const profileInsuranceRates = document.getElementById("profile-insuranceRates");
+		const profilePenaltiess = document.getElementsByClassName("profile-penalties");
+		const profileOvertimeHourss = document.getElementById("profile-overtimeHours");
+		const profileUndertimeHourss = document.getElementsByClassName("profile-undertimeHours");
+		const employeeInfo = document.getElementById("employee-info");
+
+		for (let i = 0; i < profileButtons.length; i++) {
+			const btn = profileButtons.item(i);
+			const profileName = profileNames.item(i).dataset.name;
+			const profilePosition = profilePositions.item(i).dataset.position;
+			const profileTaxStatus = profileTaxStatuses.item(i).dataset.taxstatus;
+			const profileSalaryType = profileSalaryTypes.item(i).dataset.salarytype;
+			// const profileTWDays = profileTWDayss.item(i).dataset.twdays;
+			// const profileTWHours = profileTWHourss.item(i).dataset.twhours;
+			const profileRate = profileRates.item(i).dataset.rate;
+			const profileUnpaidLeave = profileUnpaidLeaves.item(i).dataset.unpaidleave;
+			const profileTaxableLeave = profileTaxableLeaves.item(i).dataset.taxableleave;
+			const profileInsuranceRate = profileInsuranceRates.item(i).dataset.insurancerate;
+			const profilePenalties = profilePenaltiess.item(i).dataset.penalties;
+			const profileOvertimeHours = profileOvertimeHourss.item(i).dataset.overtimehours;
+			const profileUndertimeHours = profileUndertimeHourss.item(i).dataset.undertimehours;
+
+			btn.addEventListener('click', () => {
+				employeeInfo.innerHTML = `
+				<h1>Name: ${profileName}</h1>
+				<h1>Position: ${profilePosition}</h1>
+				<h1>Tax Status: ${profileTaxStatus}</h1>
+				<h1>Salary Type: ${profileSalaryType}</h1>
+				<h1>Rate: ${profileRate}</h1>
+				<h1>Unpaid Leave: ${profileUnpaidLeave}</h1>
+				<h1>Taxable Leave: ${profileTaxableLeave}</h1>
+				<h1>Insurance Rate: ${profileInsuranceRate}</h1>
+				<h1>Penalties: ${profilePenalties}</h1>
+				<h1>Overtime Hours: ${profileOvertimeHours}</h1>
+				<h1>Undertime Hours: ${profileUndertimeHours}</h1>
+			`
+			// <h1>Total Working Days: ${profileTWDays}</h1>
+			// <h1>Total Working Hours: ${profileTWHours}</h1>
+			})
+		}		const employeeBtn = document.getElementById('employee-btn');
+		const employeeList = document.getElementById('employee-list');
 		employeeBtn.onclick = () => {
-			const employeeList = document.getElementById('employee-list');
 			employeeList.style.display = 'flex'
 			const mainTitle = document.getElementById('main-title');
 			mainTitle.style.opacity = '0.5'
@@ -126,7 +190,8 @@
 			pageName.innerHTML = 'Employee'
 		}
 		const payrollBtn = document.getElementById('payroll-btn');
-		employeeBtn.onclick = () => {
+		payrollBtn.onclick = () => {
+			employeeList.style.display = 'none'
 			const mainTitle = document.getElementById('main-title');
 			mainTitle.style.opacity = '0.5'
 			const pageName = document.getElementById('pagename');

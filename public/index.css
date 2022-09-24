@@ -459,7 +459,8 @@ section .title2 {
 .employee-btns {
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	width: 20%;
+	z-index: 100;
 }
 
 .main-title {
