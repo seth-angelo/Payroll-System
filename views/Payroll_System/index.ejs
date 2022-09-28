@@ -34,34 +34,28 @@
           <div id="left">
             <div class="container">
                 <div class="item" id="employee-btn">
-                	<!-- To be rendered later -->
                     <a href="#employee"><img src="image/people_100px.png" class="logoemployee" alt=""></a>
                     <a href="#employee" class="employee">Employee</a>
                 </div>
                 <div class="item" id="payroll-btn">
-                	<!-- To be rendered later -->
                     <a href="#payroll"><img src="image/get_cash_100px.png" class="logopayroll" alt=""></a>
                     <a href="#payroll" class="payroll">Payroll</a>
                 </div>
-                <div class="item">
-                	<!-- To be rendered later -->
-                    <a href="/"><img src="image/math_100px.png" class="logocalc" alt=""></a>
-                    <a href="/" class="calc">Calculation</a>
+                <div class="item" id="calc-btn">
+                    <a href="#calculation"><img src="image/math_100px.png" class="logocalc" alt=""></a>
+                    <a href="#calculation" class="calc">Calculation</a>
                 </div>
-                <div class="item">
-                	<!-- To be rendered later -->
-                    <a href="/"><img src="image/user_groups_100px.png" class="logohr" alt=""></a>
-                    <a href="/" class="hr">HR</a>
+                <div class="item" id="hr-btn">
+                    <a href="#hr"><img src="image/user_groups_100px.png" class="logohr" alt=""></a>
+                    <a href="#hr" class="hr">HR</a>
                 </div>
-                <div class="item">
-                	<!-- To be rendered later -->
-                    <a href="/"><img src="image/search_property_100px.png" class="logoaudit" alt=""></a>
-                    <a href="/" class="audittrial">Audit Trial</a>
+                <div class="item" id="audit-btn">
+                    <a href="#audittrail"><img src="image/search_property_100px.png" class="logoaudit" alt=""></a>
+                    <a href="#audittrail" class="audittrial">Audit Trail</a>
                 </div>
-                <div class="item">
-                	<!-- To be rendered later -->
-                    <a href="/"><img src="image/send_100px.png" class="logomail" alt=""></a>
-                    <a href="/" class="mail">Mail</a>
+                <div class="item" id="mail-btn">
+                    <a href="#mail"><img src="image/send_100px.png" class="logomail" alt=""></a>
+                    <a href="#mail" class="mail">Mail</a>
                 </div>
             </div>
             <div id="footer">
@@ -196,6 +190,38 @@
 			mainTitle.style.opacity = '0.5'
 			const pageName = document.getElementById('pagename');
 			pageName.innerHTML = 'Payroll'
+		}
+		const calcBtn = document.getElementById('calc-btn');
+		calcBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Calculation'
+		}
+		const hrBtn = document.getElementById('hr-btn');
+		hrBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'HR'
+		}
+		const auditBtn = document.getElementById('audit-btn');
+		auditBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Audit Trail'
+		}
+		const mailBtn = document.getElementById('mail-btn');
+		mailBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Mail'
 		}
 	</script>
 	<script type="type/javascript"></script>
