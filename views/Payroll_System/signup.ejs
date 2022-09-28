@@ -52,7 +52,7 @@
 
         <h2>Sign up</h2>
         <h4>Create your PayStation account</h4>
-        <form action="Signin">
+        <form action="/register" id="formRegister" method="POST">
             <div class="row">
                 <div class="left col-6">
                     <div class="data">
@@ -80,7 +80,7 @@
                             <input type="text" placeholder="Phone no." id="phone" name="phone">
                         </div>
                         <div class="data">
-                            <label for="confirmpassword">confirm Password</label>
+                            <label for="confirmpassword">Confirm Password</label>
                             <input type="password" placeholder="Confirm Password" id="confirmpassword"
                                 name="confirmpassword">
                         </div>
@@ -91,7 +91,7 @@
 
             <div class="containercheckbox">
                 <!-- <label for="checkboxinput"></label> -->
-                <input type="checkbox">
+                <input type="checkbox" id="agreedTerms">
                 <span class="checkmark">I agree with the terms of use</span>
             </div>
             <!-- <div class="forgot-pass">
@@ -99,9 +99,32 @@
         </div> -->
             <div class="btn">
                 <div class="inner"></div>
-                <input type="button" value="Sign Up" onclick="location.href = '/';">
+                <!-- <input type="button" value="Sign Up" onclick="location.href = '/';"> -->
+                <!-- <input type="submit" value="Sign Up" onclick="location.href = '/register';"> -->
+                <input type="button" value="Sign Up" onclick="checkRegister()">'
             </div>
-
+            <script>
+                function checkRegister() {
+                    const firstname = document.getElementById('firstname').value;
+                    const lastname = document.getElementById('lastname').value;
+                    const email = document.getElementById('email').value;
+                    const phoneNum = Number(document.getElementById('phone').value);
+                    const password = document.getElementById('password').value;
+                    const confirmpassword = document.getElementById('confirmpassword').value;
+                    const agreed = document.getElementById('agreedTerms');
+                    // || !Number.isInteger(phoneNum);
+                    if ((!firstname || !lastname || !email || !phoneNum || !password || !confirmpassword) || !Number.isInteger(phoneNum))
+                        alert('Please fill out all proper fields');
+                    else if (confirmpassword != password)
+                        alert('Password does not match.');
+                    else if (!agreed.checked)
+                        alert("Please check with terms of use");
+                    else {
+                        alert('Sign up successfully.');
+                        document.getElementById('formRegister').submit();
+                    }
+                }
+            </script>
             <div class="signup-link">
                 Already have an Account.
                 <a href="/">Sign in</a>
@@ -110,5 +133,6 @@
     </div>
 
 </body>
+
 
 </html>

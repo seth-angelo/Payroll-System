@@ -17,7 +17,7 @@
 </head>
 
 <body>
- <!-- <body>
+    <!-- <body>
     <nav class="navbar navbar-expand-sm navbar-light " id="mainNavbar">
         <a href="Navbar" class="navbar-brand">PayStation</a>
 
@@ -43,12 +43,10 @@
             </div>
         </section>
 
-
-
-
         <h2>Sign In</h2>
-        <h4>sign in to stay connected</h4>
-        <form action="Signin">
+        <h4>Sign in to stay connected</h4>
+        <h4 class="error"><%= ERROR %></h4>
+        <form action="/signIn" method="POST" id="signing">
             <div class="data">
                 <label for="email">Email</label>
                 <input type="text" placeholder="Email" id="email" name="Username">
@@ -69,15 +67,24 @@
         </div> -->
             <div class="btn">
                 <div class="inner"></div>
-                <input type="button" value="Sign In" onclick="location.href = '/home';">
+                <input type="submit" value="Sign In" onclick="location.href = '/signIn';">
+                <!-- <input type="button" value="Sign In" onclick="checkFields()"> -->
             </div>
-
+            <script>
+                // testing
+                function checkFields() {
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    if(!email || !password)
+                        alert('Please fill out the fields');
+                    else   
+                        document.getElementById('signing').submit();
+                }
+            </script>
             <div class="signup-link">
-                Don’t have an account?
+                Don't have an account?
                 <a href="/signup">Click here to sign up.</a>
             </div>
-
-
         </form>
     </div>
 </body>

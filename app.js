@@ -5,6 +5,7 @@ const path = require("path");
 const methodOverride = require('method-override');
 
 const Profile = require("./models/profile");
+const Admin = require("./models/admin");
 
 const app = express();
 
@@ -32,11 +33,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-// GET - get ug objects
-// POST - create
-// PUT - update whole object
-// PATCH - update partial object
-// DELETE - delete object
+
 
 // let mongoURI = "mongodb+srv://payroll:payrollPass@cluster0.pslbxgl.mongodb.net/test";
 let mongoURI = "mongodb://127.0.0.1:27017/dummy-hris";
@@ -48,47 +45,93 @@ if (process.env.NODE_ENV === 'production') {
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-});
+	},
+);
 
-/* ORIG */
-// app.get("/", (req, res) => {
-// 	Profile.find({}, (err, fetchedProfiles) => {
-// 		if (err) {
-// 			console.log(err); ``
-// 		} else {
-// 			res.render('Payroll_System/index', { profiles: fetchedProfiles, title: 'Home' });
-// 		}
-// 	})
+// GET - get ug objects
+// POST - create
+// PUT - update whole object
+// PATCH - update partial object
+// DELETE - delete object
+
+// For initializing Dummy Admin (email, pass: admin, admin)
+const dummyAdmin = (req, res, next) => {
+	Admin.exists({firstName: "John"}).then((result) => {
+		console.log("Dummy admin exists");
+	}).catch((err) => {
+		Admin.create({
+			firstName: "John",
+			lastName: "Cruz",
+			phoneNum: 12345,
+			email: "admin",
+			password: "admin",
+			loggedIn: false
+		}).then(() => console.log("Dummy admin is created"));
+	});
+	next();
+};
+app.use(dummyAdmin);
+// For checking if admin is loggedIn
+// app.use("/home", (req, res, next) => {
+
 // });
 
-// // Authentication Page (Login)
-// app.get("/login", (req, res) => {
-// 	res.render('Payroll_System/login', {title: 'Authentication'});
-// });
-/* END ORIG */
-
-/* EDITED PART FOR HOMEPAGE */
 app.get("/", (req, res) => {
-	res.render('Payroll_System/login', { title: 'Authentication' });
+	console.log("Logged Out/Login Page");
+	res.render('Payroll_System/login', {ERROR : null});
 });
+
+// Sign in clicked
+app.post("/signIn", (req, res, next) => {
+	const temp = req.body;
+	Admin.findOne({email: temp.Username})
+	.then((retrieved) => {
+		if(temp.Username == retrieved.email && retrieved.password == temp.Password)
+			res.redirect('/home');
+		else { // Password does not match
+			console.log("Password does not match");
+			res.render('Payroll_System/login', {ERROR : "Username or password does not exist."});
+		}
+	}).catch((err) => { // If username is not found
+		console.log("Username not found");
+		res.render('Payroll_System/login', {ERROR : "Username or password does not exist."});
+	})
+});
+
 app.get("/signup", (req, res) => {
 	console.log("signup");
-	res.render('Payroll_System/signup', { title: 'Authentication' });
+	res.render('Payroll_System/signup');
 });
-// Authentication Page (Login)
-app.get("/home", (req, res) => {
+
+app.post("/register", (req, res) => {
+	const temp = req.body;
+	Admin.create({
+		firstName: temp.firstname,
+		lastName: temp.lastname,
+		phoneNum: temp.phone,
+		email: temp.Username,
+		password: temp.Password,
+		loggedIn: true
+	}).then((result) => {
+		console.log(result);
+		res.redirect("/home");
+	});
+});
+
+// Logged In (temp)
+app.get("/home", (req, res, next) => {
 	Profile.find({}, (err, fetchedProfiles) => {
 		if (err) {
-			console.log(err);
+			next(err);
 		} else {
-			res.render('Payroll_System/index', { profiles: fetchedProfiles, title: 'Home' });
+			res.render('Payroll_System/index', { profiles: fetchedProfiles});
 		}
 	})
 });
-/* END OF EDITED PART */
 
 // Forget Pass Page
 app.get("/forgetpass", (req, res) => {
+	console.log("forgotPass");
 	res.render('Payroll_System/forgetpass', { title: 'Reset Password' });
 });
 app.get("/forgotconfirmation", (req, res) => {
@@ -100,17 +143,17 @@ app.get("/hris", (req, res) => {
 	res.render('DUMMY_HRIS/index');
 });
 
-app.get("/employees", (req, res) => {
+app.get("/employees", (req, res, next) => {
 	Profile.find({}, (err, fetchedProfiles) => {
 		if (err) {
-			console.log(err);
+			next(err);
 		} else {
 			res.render('DUMMY_HRIS/employee-profiles', { profiles: fetchedProfiles });
 		}
 	})
 });
 
-app.post("/save-profile", (req, res) => {
+app.post("/save-profile", (req, res, next) => {
 	const body = req.body;
 	console.log("body:", body);
 
@@ -148,7 +191,7 @@ app.post("/save-profile", (req, res) => {
 		undertimeHours: body.undertime_hours
 	}, (err, profile) => {
 		if (err) {
-			console.log(err);
+			next(err);
 		} else {
 			res.redirect('/hris');
 		}
