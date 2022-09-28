@@ -289,8 +289,6 @@ img.logomail {
     text-align: center;
 }
 
-}
-
 h1 {
     font-size: 33px;
     font-weight: 500;
@@ -323,6 +321,12 @@ h4 {
     line-height: 175%;
     color: #8A92A6;
     text-align: center;
+}
+
+.error {
+    color: rgb(209, 4, 4);
+    font-weight: 700;
+    border-color: #000000;
 }
 
 h5 {
