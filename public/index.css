@@ -470,3 +470,8 @@ section .title2 {
 .main-title {
 	position: absolute;
 }
+
+#calculation-info {
+	display: none;
+	flex-direction: column;
+}
