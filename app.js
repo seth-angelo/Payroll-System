@@ -54,29 +54,35 @@ mongoose.connect(mongoURI, {
 // PATCH - update partial object
 // DELETE - delete object
 
-// For initializing Dummy Admin (email, pass: admin, admin)
-const dummyAdmin = (req, res, next) => {
-	Admin.exists({firstName: "John"}).then((result) => {
-		console.log("Dummy admin exists");
-	}).catch((err) => {
-		Admin.create({
-			firstName: "John",
-			lastName: "Cruz",
-			phoneNum: 12345,
-			email: "admin",
-			password: "admin",
-			loggedIn: false
-		}).then(() => console.log("Dummy admin is created"));
+// Checking authentication
+app.use("/home*", (req, res, next) => {
+	const admin = { firstName: app.locals.name };
+	// console.log(admin);
+	Admin.findOne(admin)
+	.then((retrieved) => {
+		if(!retrieved.loggedIn)
+			throw new Error;
+	})
+	.catch((err) => {
+		const loggedOut = { loggedIn: false };
+		Admin.updateMany({}, loggedOut, { new: true }, (err, retrieved) => {
+			console.log(retrieved);
+		});
+		res.render('Payroll_System/login', {ERROR : "You must login as ADMIN in order to view."});
 	});
 	next();
-};
-app.use(dummyAdmin);
-// For checking if admin is loggedIn
-// app.use("/home", (req, res, next) => {
-
-// });
+});
 
 app.get("/", (req, res) => {
+	// const admin = { firstName: "John" };
+	// console.log("Currently: " + app.locals.name);
+	const admin = { firstName: app.locals.name };
+	const loggedOut = { loggedIn: false };
+	Admin.findOneAndUpdate(admin, loggedOut, {new : true}, (err, retrieved) => {
+		// console.log(retrieved);
+		app.locals.name = null;
+		// console.log("Now: " + app.locals.name);
+	});
 	console.log("Logged Out/Login Page");
 	res.render('Payroll_System/login', {ERROR : null});
 });
@@ -84,26 +90,32 @@ app.get("/", (req, res) => {
 // Sign in clicked
 app.post("/signIn", (req, res, next) => {
 	const temp = req.body;
-	Admin.findOne({email: temp.Username})
+	const admin = { email: temp.Username };
+	Admin.findOne(admin)
 	.then((retrieved) => {
-		if(temp.Username == retrieved.email && retrieved.password == temp.Password)
+		if(temp.Username == retrieved.email && retrieved.password == temp.Password){
+			app.locals.name = retrieved.firstName;
+			retrieved.loggedIn = true;
+			retrieved.save();
+			console.log("found");
 			res.redirect('/home');
+		}
 		else { // Password does not match
 			console.log("Password does not match");
-			res.render('Payroll_System/login', {ERROR : "Username or password does not exist."});
+			res.render('Payroll_System/login', {ERROR : "Username or PASSWORD does not exist."});
 		}
 	}).catch((err) => { // If username is not found
 		console.log("Username not found");
-		res.render('Payroll_System/login', {ERROR : "Username or password does not exist."});
+		res.render('Payroll_System/login', {ERROR : "USERNAME or password does not exist."});
 	})
 });
 
 app.get("/signup", (req, res) => {
 	console.log("signup");
-	res.render('Payroll_System/signup');
+	res.render('Payroll_System/signup', {ERROR: null});
 });
 
-app.post("/register", (req, res) => {
+app.post("/register", (req, res, next) => {
 	const temp = req.body;
 	Admin.create({
 		firstName: temp.firstname,
@@ -115,6 +127,8 @@ app.post("/register", (req, res) => {
 	}).then((result) => {
 		console.log(result);
 		res.redirect("/home");
+	}).catch((err) =>{
+		res.render('Payroll_System/signup', {ERROR: "Please fill out all the correct fields"});
 	});
 });
 
