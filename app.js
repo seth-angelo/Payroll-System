@@ -163,6 +163,7 @@ app.get("/employees", (req, res, next) => {
 			next(err);
 		} else {
 			res.render('DUMMY_HRIS/employee-profiles', { profiles: fetchedProfiles });
+			console.log();
 		}
 	})
 });
@@ -170,10 +171,10 @@ app.get("/employees", (req, res, next) => {
 app.post("/save-profile", (req, res, next) => {
 	const body = req.body;
 	console.log("body:", body);
-
 	console.log("name:", body.name);
 	console.log("position:", body.position);
 	console.log("department:", body.department);
+	console.log("payroll period:", body.payroll_period);
 	console.log("tax status:", body.tax_status);
 	console.log("salary type:", body.salary_type);
 	console.log("total working days:", body.TWD);
@@ -186,11 +187,13 @@ app.post("/save-profile", (req, res, next) => {
 	console.log("penalties:", body.penalties);
 	console.log("overtime hours:", body.overtime_hours);
 	console.log("undertime hours:", body.undertime_hours);
+	console.log("cash advance application:", body.cash_advance);
 
 	Profile.create({
 		name: body.name,
 		position: body.position,
 		department: body.department,
+		payrollPeriod: body.payroll_period,
 		taxStatus: body.tax_status,
 		salaryType: body.salary_type,
 		TWDays: body.TWD,
@@ -202,7 +205,8 @@ app.post("/save-profile", (req, res, next) => {
 		insuranceRate: body.isr_rate,
 		penalties: body.penalties,
 		overtimeHours: body.overtime_hours,
-		undertimeHours: body.undertime_hours
+		undertimeHours: body.undertime_hours,
+		cashAdvance: body.cash_advance
 	}, (err, profile) => {
 		if (err) {
 			next(err);

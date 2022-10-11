@@ -85,6 +85,8 @@
 					<button class="profile-btn">
 						<div class="profile-name" data-name=<%= profile.name %>></div>
 						<div class="profile-position" data-position=<%= profile.position %>></div>
+						<div class="profile-department" data-department=<%= profile.department %>></div>
+						<div class="profile-payrollPeriod" data-payrollperiod=<%= profile.payrollPeriod %>></div>
 						<div class="profile-taxStatus" data-taxstatus=<%= profile.taxStatus %>></div>
 						<div class="profile-salaryType" data-salarytype=<%= profile.salaryType %>></div>
 
@@ -100,6 +102,7 @@
 						<div class="profile-penalties" data-penalties=<%= profile.penalties %>></div>
 						<div class="profile-overtimeHours" data-overtimehours=<%= profile.overtimeHours %>></div>
 						<div class="profile-undertimeHours" data-undertimehours=<%= profile.undertimeHours %>></div>
+						<div class="profile-cashAdvance" data-cashadvance=<%= profile.cashAdvance %>></div>
 
 						<h1><%= profile.name %></h1>
 						<%= profile.position %>
@@ -132,6 +135,8 @@
 		const profileButtons = document.getElementsByClassName("profile-btn");
 		const profileNames = document.getElementsByClassName("profile-name");
 		const profilePositions = document.getElementsByClassName("profile-position");
+		const profileDepartments = document.getElementsByClassName("profile-department");
+		const profilePayrollPeriods = document.getElementsByClassName("profile-payrollPeriod");
 		const profileTaxStatuses = document.getElementsByClassName("profile-taxStatus");
 		const profileSalaryTypes = document.getElementsByClassName("profile-salaryType");
 
@@ -151,6 +156,7 @@
 		const profilePenaltiess = document.getElementsByClassName("profile-penalties");
 		const profileOvertimeHourss = document.getElementsByClassName("profile-overtimeHours");
 		const profileUndertimeHourss = document.getElementsByClassName("profile-undertimeHours");
+		const profileCashAdances = document.getElementsByClassName("profile-cashAdvance");
 		const employeeInfo = document.getElementById("employee-info");
 
 		let employeeIndex = 0;
@@ -160,6 +166,8 @@
 			const profileName = profileNames.item(i).dataset.name;
 			const profilePosition = profilePositions.item(i).dataset.position;
 			const profileTaxStatus = profileTaxStatuses.item(i).dataset.taxstatus;
+			const profileDepartment = profileDepartments.item(i).dataset.department;
+			const profilePayrollPeriod = profilePayrollPeriods.item(i).dataset.payrollperiod;
 			const profileSalaryType = profileSalaryTypes.item(i).dataset.salarytype;
 			let profileTWDays;
 			let TWTime;
@@ -182,11 +190,14 @@
 			const profilePenalties = profilePenaltiess.item(i).dataset.penalties;
 			const profileOvertimeHours = profileOvertimeHourss.item(i).dataset.overtimehours;
 			const profileUndertimeHours = profileUndertimeHourss.item(i).dataset.undertimehours;
+			const profileCashAdance = profileCashAdances.item(i).dataset.cashadvance;
 
 			btn.addEventListener('click', () => {
 				employeeInfo.innerHTML = `
 				<h1>Name: ${profileName}</h1>
 				<h1>Position: ${profilePosition}</h1>
+				<h1>Department: ${profileDepartment}</h1>
+				<h1>Payroll Period: ${profilePayrollPeriod}</h1>
 				<h1>Tax Status: ${profileTaxStatus}</h1>
 				<h1>Salary Type: ${profileSalaryType}</h1>
 				<h1>Total Working Time: ${TWTime}</h1>
@@ -198,12 +209,14 @@
 				<h1>Penalties: ${profilePenalties}</h1>
 				<h1>Overtime Hours: ${profileOvertimeHours}</h1>
 				<h1>Undertime Hours: ${profileUndertimeHours}</h1>
+				<h1>Cash Advance Application: ${profileCashAdance}</h1>
 			`
 			employeeIndex = i;
 			// <h1>Total Working Days: ${profileTWDays}</h1>
 			// <h1>Total Working Hours: ${profileTWHours}</h1>
 			})
-		}		const employeeBtn = document.getElementById('employee-btn');
+		}		
+		const employeeBtn = document.getElementById('employee-btn');
 		const employeeList = document.getElementById('employee-list');
 		const calculationInfo = document.getElementById("calculation-info");
 		employeeBtn.onclick = () => {

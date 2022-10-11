@@ -4,6 +4,7 @@ const profileSchema = new mongoose.Schema({
 	name: String,
 	position: String,
 	department: String,
+	payrollPeriod: Date,
 	taxStatus: String,
 	salaryType: String,
 	TWDays: Number,
@@ -15,7 +16,8 @@ const profileSchema = new mongoose.Schema({
 	insuranceRate: Number,
 	penalties: Number,
 	overtimeHours: Number,
-	undertimeHours: Number
+	undertimeHours: Number,
+	cashAdvance: Number,
 });
 
 module.exports = mongoose.model('Profile', profileSchema);
