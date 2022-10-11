@@ -201,7 +201,7 @@ app.post("/save-profile", (req, res, next) => {
 		bonus: body.bonus,
 		insuranceRate: body.isr_rate,
 		penalties: body.penalties,
-		ovetimeHours: body.overtime_hours,
+		overtimeHours: body.overtime_hours,
 		undertimeHours: body.undertime_hours
 	}, (err, profile) => {
 		if (err) {
