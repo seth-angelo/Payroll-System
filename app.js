@@ -3,9 +3,17 @@ const bodyParser = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require('method-override');
+const nodemailer = require("nodemailer");
+
+const jwt = require("jsonwebtoken");
+const { v4 : uuidv4 }= require("uuid");
 
 const Profile = require("./models/profile");
 const Admin = require("./models/admin");
+const PasswordReset = require("./models/passwordReset");
+const userVerification = require("./models/userVerification");
+const passwordReset = require("./models/passwordReset");
+
 
 const app = express();
 
@@ -36,7 +44,7 @@ app.use((req, res, next) => {
 
 
 // let mongoURI = "mongodb+srv://payroll:payrollPass@cluster0.pslbxgl.mongodb.net/test";
-let mongoURI = "mongodb://127.0.0.1:27017/dummy-hris";
+let mongoURI = "mongodb://127.0.0.1:27017/dummy-hris"; // Only for localhost mongoDB Compass
 
 if (process.env.NODE_ENV === 'production') {
 	mongoURI = 'mongodb+srv://SethAngelo:16-0316-947@cluster0.pfzxzmh.mongodb.net/?retryWrites=true&w=majority'
@@ -54,60 +62,80 @@ mongoose.connect(mongoURI, {
 // PATCH - update partial object
 // DELETE - delete object
 
+
+/* 
+	* Note: Uncomment // next(err) for debugging
+*/
+
 // Checking authentication
 app.use("/home*", (req, res, next) => {
-	const admin = { firstName: app.locals.name };
+	let id = { _id : app.locals.id };
 	// console.log(admin);
-	Admin.findOne(admin)
+	Admin.findById(id)
 	.then((retrieved) => {
+		console.log(retrieved._id.toString());
 		if(!retrieved.loggedIn)
 			throw new Error;
 	})
 	.catch((err) => {
+		// next(err);
 		const loggedOut = { loggedIn: false };
 		Admin.updateMany({}, loggedOut, { new: true }, (err, retrieved) => {
 			console.log(retrieved);
+			console.log("Not admin. Logging out all accounts");
 		});
-		res.render('Payroll_System/login', {ERROR : "You must login as ADMIN in order to view."});
+		res.status(401).render('Payroll_System/login', {ERROR : "You must login as ADMIN in order to view."});
 	});
 	next();
 });
 
 app.get("/", (req, res) => {
-	// const admin = { firstName: "John" };
-	// console.log("Currently: " + app.locals.name);
-	const admin = { firstName: app.locals.name };
-	const loggedOut = { loggedIn: false };
-	Admin.findOneAndUpdate(admin, loggedOut, {new : true}, (err, retrieved) => {
-		// console.log(retrieved);
-		app.locals.name = null;
-		// console.log("Now: " + app.locals.name);
-	});
+	if(app.locals.name != null && app.locals.id != null) {
+		res.status(302).redirect('/home');
+	}
 	console.log("Logged Out/Login Page");
 	res.render('Payroll_System/login', {ERROR : null});
 });
 
 // Sign in clicked
 app.post("/signIn", (req, res, next) => {
-	const temp = req.body;
-	const admin = { email: temp.Username };
+	let temp = req.body;
+	console.log(temp.rememberMe);
+	let admin = { email: temp.Username };
 	Admin.findOne(admin)
 	.then((retrieved) => {
 		if(temp.Username == retrieved.email && retrieved.password == temp.Password){
-			app.locals.name = retrieved.firstName;
+			app.locals.name = retrieved.firstName + " " + retrieved.lastName;
+			app.locals.id = retrieved._id.toString();
 			retrieved.loggedIn = true;
 			retrieved.save();
-			console.log("found");
-			res.redirect('/home');
+			console.log("Found. Logging in..");
+			res.status(200).redirect('/home');
 		}
 		else { // Password does not match
 			console.log("Password does not match");
-			res.render('Payroll_System/login', {ERROR : "Username or PASSWORD does not exist."});
+			res.status(404).render('Payroll_System/login', {ERROR : "Username or PASSWORD does not exist."});
 		}
-	}).catch((err) => { // If username is not found
+	}).catch((err) => { // Uusername is not found
+		// next(err);
 		console.log("Username not found");
-		res.render('Payroll_System/login', {ERROR : "USERNAME or password does not exist."});
+		res.status(404).render('Payroll_System/login', {ERROR : "USERNAME or password does not exist."});
 	})
+});
+
+app.get('/signOut', (req, res) => {
+	let id = { _id : app.locals.id };
+	const loggedOut = { loggedIn: false };
+	Admin.findByIdAndUpdate(id, loggedOut, {new : true}, (err, retrieved) => {
+		app.locals.id = null;
+		app.locals.name = null;
+		console.log(retrieved);
+	});
+	// Admin.findOneAndUpdate(admin, loggedOut, {new : true}, (err, retrieved) => {
+	// 	// console.log(retrieved);
+	// 	app.locals.name = null;
+	// });
+	res.status(200).redirect('/');
 });
 
 app.get("/signup", (req, res) => {
@@ -115,7 +143,7 @@ app.get("/signup", (req, res) => {
 	res.render('Payroll_System/signup', {ERROR: null});
 });
 
-app.post("/register", (req, res, next) => {
+app.post("/register", (req, res) => {
 	const temp = req.body;
 	Admin.create({
 		firstName: temp.firstname,
@@ -126,32 +154,131 @@ app.post("/register", (req, res, next) => {
 		loggedIn: true
 	}).then((result) => {
 		console.log(result);
+		app.locals.name = result.firstName + " " + result.lastName;
+		app.locals.id = result._id.toString();
 		res.redirect("/home");
 	}).catch((err) =>{
-		res.render('Payroll_System/signup', {ERROR: "Please fill out all the correct fields"});
+		// next(err)
+		res.status(400).render('Payroll_System/signup', {ERROR: "Please fill out all the correct fields"});
 	});
 });
 
-// Logged In (temp)
+// Home Page
 app.get("/home", (req, res, next) => {
 	Profile.find({}, (err, fetchedProfiles) => {
 		if (err) {
+			console.log("Error on home page");
 			next(err);
 		} else {
-			res.render('Payroll_System/index', { profiles: fetchedProfiles});
+			res.render('Payroll_System/index', { profiles: fetchedProfiles, Name: app.locals.name });
 		}
 	})
 });
 
-// Forget Pass Page
+// ! Forget Pass Page Backend
+
+const jwtSecret = "paystation";
+
+
 app.get("/forgetpass", (req, res) => {
 	console.log("forgotPass");
-	res.render('Payroll_System/forgetpass', { title: 'Reset Password' });
+	res.render('Payroll_System/forgetpass', { Title: 'Password Reset' });
+	
 });
-app.get("/forgotconfirmation", (req, res) => {
-	console.log("forgotconfirmation");
-	res.render('Payroll_System/forgotconfirmation', { title: 'Reset Password' });
+
+app.post("/forgetPass", (req, res, next) => {
+	const temp = req.body;
+	const email = { email: temp.Username };
+	Admin.findOne(email)
+	.then((retrieved) => {
+		if(retrieved == null)
+			throw new Error;
+		else { // Sending email link
+			// const resetString = uuidv4 + retrieved._id;
+			const secret = jwtSecret + retrieved.password;
+			console.log(retrieved.id);
+			const payload = {
+				email: retrieved.email,
+				id: retrieved.id
+			}
+			const token = jwt.sign(payload, secret, {expiresIn: "1m"});
+			// * Wala ko kaybaw unsaon pag set sa baseURL igka deploy sa app sa heroku
+			const link = `${process.env}/resetPassword/${retrieved.id}/${token}`;
+			// const link = process.env.PORT || 5000 + `/resetPassword/${retrieved.id}/${token}`;
+			// const link = `${req.baseUrl}/resetPassword/${retrieved.id}/${token}`;
+			console.log(link);
+			// ! Error pa siya
+			const tranporter = nodemailer.createTransport({
+				service: "gmail",
+				auth: {
+					user: "nathanieldavid.116@gmail.com",
+					pass: "niSSan350z!",
+				},
+				// tls: {
+				// 	rejectUnauthorized: false
+				// }
+			});
+			const mailOptions = {
+				from: "nathanieldavid.116@gmail.com",
+				to: retrieved.email,
+				subject: "Paystation Password Reset",
+				text: `You have sent a password reset. Click on this link: ${link}`,
+			};
+			tranporter.sendMail(mailOptions, (err, success) => {
+				if(err)
+					console.log(err);
+				else {
+					console.log(success);
+				}
+			})
+			// passwordReset.deleteMany({ userId: id })
+			// .then((received) => {
+			// 	const mailOptions = {
+			// 		from: process.env.AUTH_EMAIL,
+			// 	};
+			// })
+			// .catch();
+
+		}
+		res.render('Payroll_System/forgotconfirmation',
+		{ 
+			Title: 'Password Reset',
+			Description: 'Please check your email for password reset instructions.',
+			ERROR: null
+		});
+	})
+	.catch((err) => { // No email found in database
+	// next(err)
+	console.log("No email scanned in db");
+	res.render('Payroll_System/forgotconfirmation',
+	{ 
+		Title: 'Password Reset',
+		Description: null,
+		ERROR: 'Email is not registered.'
+	}
+	)});
 });
+
+// ? Dugangig string tumoy sa url sa ilang uid
+// Sent from mail
+app.get("/resetPassword/:id/:token", (req, res) => {
+	console.log(req.url);
+	console.log("Reset password form");
+	res.render("Payroll_System/resetpassword");
+});
+
+app.post("/resetPassword", (req, res) => {
+	const temp = req.body;
+	console.log(temp);
+	console.log("Resseting Password");
+	res.render('Payroll_System/forgotconfirmation',
+	{ 
+		Title: 'Password Reset',
+		Description: 'Password resetted successfully.',
+		ERROR: null
+	});
+});
+// ! End Forget Pass
 
 app.get("/hris", (req, res) => {
 	res.render('DUMMY_HRIS/index');

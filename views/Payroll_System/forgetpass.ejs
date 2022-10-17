@@ -25,7 +25,7 @@
                 <div class="logo col-4">
                     <img class="img-fluid" src="image/btn_icon_magic.png" alt="" class="image-fluid">
                 </div>
-                <div class="title col-8">
+                <div class="title1 col-8">
                     <h1>PayStation</h1>
                 </div>
             </div>
@@ -34,19 +34,22 @@
 
 
 
-        <h5>Reset Password</h5>
+        <h5><%= Title %></h5>
         <h6>Enter your Email address and we'll send you an email with instructions to reset your password</h6>
-        <form action="Signin">
+        <form action="/forgetPass" method="POST">
             <div class="data">
                 <label for="email">Email</label>
-                <input type="text" placeholder="Email" id="email" name="Username">
+                <input type="email" placeholder="Email" id="email" name="Username" required>
             </div>
             <div class="btn">
-
-                <input type="button" value="Reset" onclick="location.href = '/forgotconfirmation';">
+                <!-- <input type="button" value="Reset" onclick="location.href = '/forgotconfirmation';"> -->
+                <input type="submit" value="Reset">
 
             </div>
         </form>
+        <script>
+
+        </script>
     </div>
 
 </body>
