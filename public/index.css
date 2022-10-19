@@ -475,3 +475,8 @@ section .title2 {
 	display: none;
 	flex-direction: column;
 }
+
+#mailing-info {
+	display: none;
+	flex-direction: column;
+}
