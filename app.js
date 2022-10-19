@@ -13,7 +13,13 @@ const Admin = require("./models/admin");
 // const passwordReset = require("./models/passwordReset");
 
 
+const PDFDocument = require('pdfkit');
+//const blobStream = require('blob-stream');
+
+const fs = require('fs');
+
 const app = express();
+
 
 app.set("port", 5000);
 app.use(
@@ -336,6 +342,65 @@ app.post("/save-profile", (req, res, next) => {
 		}
 	})
 });
+
+app.post("/pdf", (req, res, next) =>{
+	console.log(req.body);
+			 const doc = new PDFDocument({size: 'LETTER'});
+			// const blobStream = require('blob-stream');
+			// // pipe the document to a blob
+			// const stream = doc.pipe(blobStream());
+
+			res.setHeader('Content-Type', 'application/pdf');
+			res.setHeader(
+				'Content-Disposition',
+				'inline; filename "' + "PaySlip.pdf"  + '"'
+				)
+
+			doc.pipe(fs.createWriteStream(`payslip-${req.body.profileName}.pdf`)); // write to PDF
+			doc.pipe(res);                                       // HTTP response
+			//PDF Details
+			//doc.font('fonts/PalatinoBold.ttf')
+  			doc.fontSize(25)
+  			doc.text(`PayStation`,{align: 'center'});
+  			// doc.image("image/btn_icon_magic_Big.png", {align: 'right'})
+  			// doc.moveDown();
+  			doc.fontSize(20)
+  			doc.moveDown();
+  			doc.text(`Name: ${req.body.profileName}`);
+  			doc.moveDown();
+  			doc.text(`Position: ${req.body.profilePosition}`);
+  			doc.moveDown();
+  			doc.text(`Department: ${req.body.profileDepartment}`);
+  			doc.moveDown();
+  			doc.text(`Payroll Period: ${req.body.profilePayrollPeriod}`);
+  			doc.moveDown();
+  			doc.text(`Basic Salary: ${req.body.displayBasicSalary}`);
+  			doc.moveDown();
+  			doc.text(`Leave Deduction: ${req.body.displayLeaveDeduction}`);
+  			doc.moveDown();
+  			doc.text(`Bonus/ Allowance: ${req.body.profileBonus}`);
+  			doc.moveDown();
+  			doc.text(`Miscallaneous Penalties: ${req.body.profilePenalties}`);
+  			doc.moveDown();
+  			doc.text(`Overtime Pay: ${req.body.displayOTP}`);
+  			doc.moveDown();
+  			doc.text(`Undertime Penalty: ${req.body.displayUTP}`);
+  			doc.moveDown();
+  			doc.text(`Monthly Premium: ${req.body.displayMonthlyPremium}`);
+  			doc.moveDown();
+  			doc.text(`Employee Contribution: ${req.body.displayEmployeeContribution}`);
+  			doc.moveDown();
+  			doc.text(`Employee Share: ${req.body.displayEmployeeShare}`);
+  			doc.moveDown();
+  			doc.text(`Total Earnings: ${req.body.displayTotalEarnings}`);
+  			doc.moveDown();
+  			doc.text(`Total Deductions: ${req.body.displayTotalDeductions}`);
+  			doc.moveDown();
+  			doc.text(`Net Pay: ${req.body.displayNetPay}`);
+			//finalize the PDF and end the stream
+			doc.end();
+			//res.end();
+})
 
 let port = app.get("port");
 app.listen(process.env.PORT || 5000, () => console.log(`Dummy HRIS running on port ${port}`));
