@@ -3,328 +3,201 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-	<title>Default Landing Page</title>
+    <title>Default Landing Page</title>
 	<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-	<div>
-		<nav class="navbar navbar-expand-sm  fixed-top">
-			<div>
-				<a href="#home" class="nav-item nav-link"><img class="img-fluid" src="image/btn_icon_magic.png" alt=""
-						class="image-fluid"></a>
-			</div>
 
+        <nav class="navbar navbar-expand-sm  fixed-top">
+            <a href="/home" class="nav-item nav-link"><img class="img-fluid" src="image/btn_icon_magic.png" alt=""
+                    class="image-fluid"></a>
 
-			<div class="collapse navbar-collapse">
-				<div>
-					<a id="paystation-btn" href="#home" class="navbar-brand">Paystation</a>
-				</div>
-				<form action="" class="form-inline ml-auto">
-					<button class="btn  my-2 my-sm-0" type="submit"><img src="image/notification_100px.png" alt="">
-					</button>
-				</form>
-			</div>
-		</nav>
-	</div>
+            <div class="collapse navbar-collapse">
+                <div>
+                    <a href="/home" class="navbar-brand">Paystation</a>
+                </div>
+                <form action="" class="form-inline ml-auto">
+                    <button class="btn  my-2 my-sm-0" type="submit"><img src="image/notification_100px.png" alt="">
+                    </button>
+                </form>
+            </div>
+        </nav>
+          <div id="left">
+            <div class="container">
+                <div class="item" id="employee-btn">
+                    <a href="#employee"><img src="image/people_100px.png" class="logoemployee" alt=""></a>
+                    <a href="#employee" class="employee">Employee</a>
+                </div>
+                <div class="item" id="calc-btn">
+                    <a href="#calculation"><img src="image/math_100px.png" class="logocalc" alt=""></a>
+                    <a href="#calculation" class="calc">Calculation</a>
+                </div>
+                <div class="item" id="payroll-btn">
+                    <a href="#payroll"><img src="image/get_cash_100px.png" class="logopayroll" alt=""></a>
+                    <a href="#payroll" class="payroll">Payroll</a>
+                </div>
+                <div class="item" id="hr-btn">
+                    <a href="#hr"><img src="image/user_groups_100px.png" class="logohr" alt=""></a>
+                    <a href="#hr" class="hr">HR</a>
+                </div>
+                <div class="item" id="audit-btn">
+                    <a href="#audittrail"><img src="image/search_property_100px.png" class="logoaudit" alt=""></a>
+                    <a href="#audittrail" class="audittrial">Audit Trail</a>
+                </div>
+                <div class="item" id="mail-btn">
+                    <a href="#mail"><img src="image/send_100px.png" class="logomail" alt=""></a>
+                    <a href="#mail" class="mail">Mail</a>
+                </div>
+            </div>
+            <div id="footer">
+                <div class="item">
+                    <a href="user"><img src="image/user_100px.png" class="userprofile" alt=""></a>
+                    <a href="user" class="user"><%=  Name %> </a> 
+                    <a href="position" class="position">
+                        Accountant
+                        Administrator
+                    </a>
 
-	<div id="left">
-		<div class="container">
-			<div class="item" id="employee-btn">
-				<a href="#employee"><img src="image/people_100px.png" class="logoemployee" alt=""></a>
-				<a href="#employee" class="employee">Employee</a>
-			</div>
-			<div class="item" id="calc-btn">
-				<a href="#calculation"><img src="image/math_100px.png" class="logocalc" alt=""></a>
-				<a href="#calculation" class="calc">Calculation</a>
-			</div>
-			<div class="item" id="payroll-btn">
-				<a href="#payroll"><img src="image/get_cash_100px.png" class="logopayroll" alt=""></a>
-				<a href="#payroll" class="payroll">Payroll</a>
-			</div>
-
-			<div class="item" id="hr-btn">
-				<a href="#hr"><img src="image/user_groups_100px.png" class="logohr" alt=""></a>
-				<a href="#hr" class="hr">HR</a>
-			</div>
-			<div class="item" id="audit-btn">
-				<a href="#audittrail"><img src="image/search_property_100px.png" class="logoaudit" alt=""></a>
-				<a href="#audittrail" class="audittrial">Audit Trail</a>
-			</div>
-			<div class="item" id="mail-btn">
-				<a href="#mail"><img src="image/send_100px.png" class="logomail" alt=""></a>
-				<a href="#mail" class="mail">Mail</a>
-			</div>
-		</div>
-		<div id="footer">
-			<!-- <div class="item">
-				<a href="user"><img src="image/user_100px.png" class="userprofile" alt=""></a>
-				<a href="user" class="user">John Smith</a>
-				<a href="position" class="position">
-					Accountant
-					Administrator
-				</a>
-
-			</div> -->
-			<div id="signout">
-				<a href="Paystation.html"><img src="image/sign_out_100px.png" class="signoutlogo" alt=""></a>
-				<a href="/" class="signout">Sign out</a>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div id="right">
-		<!-- <div class="main-title" id="main-title">
-			<img src="image/btn_icon_magic_Big.png" class="emp" alt="">
-			<span class="pagename" id="pagename">Paystation</span>
-		</div> -->
-
-		<!-- for employee interface -->
-		<div class="employee-list" id="employee-list">
-
-			<div class="titlebar">
-				<h1 class="employeename" style="display:inline;"> Employee name </h1>
-				<h1 class="jobtitle" style="display:inline;">Job Title</h1>
-			</div>
-			<div class="employee-btns">
-				<% for(let profile of profiles) { %>
+                </div>
+                <div id="signout">
+                    <a href="Paystation.html"><img src="image/sign_out_100px.png" class="signoutlogo" alt=""></a>
+                    <a href="/signOut" class="signout">Sign out</a>
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <div class="main-title" id="main-title">
+                <img src="image/btn_icon_magic_Big.png" class="emp" alt="">
+                <span class="pagename" id="pagename">Paystation</span>
+            </div>
+          <div class="employee-list" id="employee-list">
+          	<div class="employee-btns">
+          		<% for(let profile of profiles) { %>
 					<button class="profile-btn">
+						<div class="profile-name" data-name= <%= profile.name %>></div>
+						<div class="profile-position" data-position=<%= profile.position %>></div>
+						<div class="profile-department" data-department=<%= profile.department %>></div>
+						<div class="profile-payrollPeriod" data-payrollperiod=<%= profile.payrollPeriod %>></div>
+						<div class="profile-taxStatus" data-taxstatus=<%= profile.taxStatus %>></div>
+						<div class="profile-salaryType" data-salarytype=<%= profile.salaryType %>></div>
 
-						<div class="profile-name" data-name=<%=profile.name %>></div>
-						<div class="profile-position" data-position=<%=profile.position %>></div>
-						<div class="profile-taxStatus" data-taxstatus=<%=profile.taxStatus %>></div>
-						<div class="profile-salaryType" data-salarytype=<%=profile.salaryType %>></div>
-						<div class="profile-TWDays" data-twdays=<%=profile.TWDays %>></div>
-						<div class="profile-TWHours" data-twhours=<%=profile.TWHours %>></div>
+						<div class="profile-TWDays" data-twdays=<%= profile.TWDays %>></div>
+						<div class="profile-TWHours" data-twhours=<%= profile.TWHours %>></div>
 						<div class="profile-TWTime"></div>
 
-						<div class=" profile-rate" data-rate=<%=profile.rate %>></div>
-						<div class="profile-bonus" data-bonus=<%=profile.bonus %>></div>
-						<div class="profile-unpaidLeave" data-unpaidleave=<%=profile.unpaidLeave %>></div>
-						<div class="profile-taxableLeave" data-taxableleave=<%=profile.taxableLeave %>></div>
-						<div class="profile-insuranceRate" data-insurancerate=<%=profile.insuranceRate %>></div>
-						<div class="profile-penalties" data-penalties=<%=profile.penalties %>></div>
-						<div class="profile-overtimeHours" data-overtimehours=<%=profile.overtimeHours %>></div>
-						<div class="profile-undertimeHours" data-undertimehours=<%=profile.undertimeHours %>></div>
+						<div class="profile-rate" data-rate=<%= profile.rate %>></div>
+						<div class="profile-bonus" data-bonus=<%= profile.bonus %>></div>
+						<div class="profile-unpaidLeave" data-unpaidleave=<%= profile.unpaidLeave %>></div>
+						<div class="profile-taxableLeave" data-taxableleave=<%= profile.taxableLeave %>></div>
+						<div class="profile-insuranceRate" data-insurancerate=<%= profile.insuranceRate %>></div>
+						<div class="profile-penalties" data-penalties=<%= profile.penalties %>></div>
+						<div class="profile-overtimeHours" data-overtimehours=<%= profile.overtimeHours %>></div>
+						<div class="profile-undertimeHours" data-undertimehours=<%= profile.undertimeHours %>></div>
+						<div class="profile-cashAdvance" data-cashadvance=<%= profile.cashAdvance %>></div>
 
-
-						<div class="name">
-							<h1 class="employee-name">
-								<%= profile.name %>
-							</h1>
-							<h1 class="employee-position ">
-								<%= profile.position %>
-							</h1>
-						</div>
+						<h1><%= profile.name %></h1>
+						<%= profile.position %>
 					</button>
-					<% } %>
-			</div>
-			<div id="employee-info"></div>
+				<% } %>
+          	</div>
+          	
+          	<div id="employee-info">
+          	</div>
+          </div>
+
+          	<div id="calculation-info"></div>
+        	</div>
+
+        	<div id="mailing-info"></div>
+        	</div>
+
+
+	<!-- <div class="main">
+		<div class="sideBar">
+			<% for(let profile of profiles) { %>
+				<button onclick="popup()">
+					<%= profile.name %>
+						<%= profile.position %>
+				</button>
+				<% } %>
 		</div>
-
-		<div class=" payroll-interface payrolrecent" id="payroll-interface">
-			<div class="recenttitle">
-				<h1>Recent</h1>
-				<div>
-					<button class="payrollbutton">
-						<img src=" user_100px.png" class="profile-pic" alt=""></a>
-						<div class="employee-position">Nathaniel<br>CEO</div>
-					</button>
-				</div>
-			</div>
-
-
+		<div class="second">
 		</div>
-		<div class="calc-interface" id="calc-interface">
+	</div>
+	 <button onclick="" ,>LOGIN</button> -->
+	<script>
+		const profileButtons = document.getElementsByClassName("profile-btn");
+		const profileNames = document.getElementsByClassName("profile-name");
+		const profilePositions = document.getElementsByClassName("profile-position");
+		const profileDepartments = document.getElementsByClassName("profile-department");
+		const profilePayrollPeriods = document.getElementsByClassName("profile-payrollPeriod");
+		const profileTaxStatuses = document.getElementsByClassName("profile-taxStatus");
+		const profileSalaryTypes = document.getElementsByClassName("profile-salaryType");
 
-		</div>
+		const profileTWDayss = document.getElementsByClassName("profile-TWDays");
+		const profileTWHourss = document.getElementsByClassName("profile-TWHours");
 
-		<!-- start of hr -->
-		<div id="hr-interface">
-			<div id="rleft">
-				<div class="right-container-left">
-					<div class="data">
-						<label for="name">Name</label>
-						<input type="text" id="name" name="name">
-					</div>
-					<div class="data">
-						<label for="taxstatus">Tax Status</label>
-						<input type="text" id="taxstatus" name="taxstatus">
-					</div>
-					<div class="data">
-						<label for="taxableleave">Taxable Leave</label>
-						<input type="text" id="taxableleave" name="taxableleave">
-					</div>
-					<div class="data">
-						<label for="penalties">penalties</label>
-						<input type="text" id="penalties" name="penalties">
-					</div>
-				</div>
-			</div>
-			<div id="rmid">
-				<div class="right-container-mid">
+		const TWTime = document.getElementsByClassName("profile-TWTime");
 
-					<div class="data">
-						<label for="name">Position</label>
-						<input type="text" id="name" name="name">
-					</div>
+		const profileRates = document.getElementsByClassName("profile-rate");
+		const profileUnpaidLeaves = document.getElementsByClassName("profile-unpaidLeave");
+		const profileTaxableLeaves = document.getElementsByClassName("profile-taxableLeave");
+		const profileBonuses = document.getElementsByClassName("profile-bonus");
+		const profileInsuranceRates = document.getElementsByClassName("profile-insuranceRate");
+		const profilePenaltiess = document.getElementsByClassName("profile-penalties");
+		const profileOvertimeHourss = document.getElementsByClassName("profile-overtimeHours");
+		const profileUndertimeHourss = document.getElementsByClassName("profile-undertimeHours");
+		const profileCashAdances = document.getElementsByClassName("profile-cashAdvance");
+		const employeeInfo = document.getElementById("employee-info");
 
-					<div class="data">
-						<label for="taxstatus">Rate</label>
-						<input type="text" id="taxstatus" name="taxstatus">
-					</div>
-					<div class="data">
-						<label for="taxableleave">Bonus</label>
-						<input type="text" id="taxableleave" name="taxableleave">
-					</div>
-					<div class="data">
-						<label for="penalties">Overtime Hours</label>
-						<input type="text" id="penalties" name="penalties">
-					</div>
-				</div>
-			</div>
-			<div id="rright">
-				<div class="right-container-right">
+		let employeeIndex = 0;
 
-					<div class="data">
-						<label for="typeofsalary">Type of Salary</label>
-						<select name="typeofsalary" id="typeofsalary" class="form-control">
-							<option value="CC">Daily</option>
-							<option value="MC">Monthly</option>
-							<option value="LC">Hourly</option>
-						</select>
-					</div>
-					<div class="data">
-						<label for="name">Department</label>
-						<input type="text" id="name" name="name">
-					</div>
-					<div class="data">
-						<label for="taxstatus">Unpaid Leave</label>
-						<input type="text" id="taxstatus" name="taxstatus">
-					</div>
-					<div class="data">
-						<label for="taxableleave">Insurance Rate</label>
-						<input type="text" id="taxableleave" name="taxableleave">
-					</div>
-					<div class="data">
-						<label for="penalties">Undertime Hours</label>
-						<input type="text" id="penalties" name="penalties">
-					</div>
-				</div>
-			</div>
+		for (let i = 0; i < profileButtons.length; i++) {
+			const btn = profileButtons.item(i);
+			const profileName = profileNames.item(i).dataset.name;
+			const profilePosition = profilePositions.item(i).dataset.position;
+			const profileTaxStatus = profileTaxStatuses.item(i).dataset.taxstatus;
+			const profileDepartment = profileDepartments.item(i).dataset.department;
+			const profilePayrollPeriod = profilePayrollPeriods.item(i).dataset.payrollperiod;
+			const profileSalaryType = profileSalaryTypes.item(i).dataset.salarytype;
+			let profileTWDays;
+			let TWTime;
+			let profileTWHours;
+			if (profileSalaryType == "DRate"){
+				profileTWDays = profileTWDayss.item(i).dataset.twdays;
+				TWTime = profileTWDays;
+			}
+			else{
+				profileTWHours = profileTWHourss.item(i).dataset.twhours;
+				TWTime = profileTWHours;
+			}
+			// const profileTWDays = profileTWDayss.item(i).dataset.twdays;
+			// const profileTWHours = profileTWHourss.item(i).dataset.twhours;
+			const profileRate = profileRates.item(i).dataset.rate;
+			const profileUnpaidLeave = profileUnpaidLeaves.item(i).dataset.unpaidleave;
+			const profileTaxableLeave = profileTaxableLeaves.item(i).dataset.taxableleave;
+			const profileBonus = profileBonuses.item(i).dataset.bonus;
+			const profileInsuranceRate = profileInsuranceRates.item(i).dataset.insurancerate;
+			const profilePenalties = profilePenaltiess.item(i).dataset.penalties;
+			const profileOvertimeHours = profileOvertimeHourss.item(i).dataset.overtimehours;
+			const profileUndertimeHours = profileUndertimeHourss.item(i).dataset.undertimehours;
+			const profileCashAdance = profileCashAdances.item(i).dataset.cashadvance;
 
-
-		</div>
-		<!-- end of hr -->
-
-		<div id="audit-interface">
-			<p class="header">PAYSLIP AUDIT TRAIL REPORT</p>
-
-			<input class="searchbar" type="text" id="myInput" placeholder="Search" title="Type">
-			<table style="width:90%">
-
-				<tr>
-					<th>Date:</th>
-					<th>Record Reference No.</th>
-					<th>Level</th>
-					<th>Status</th>
-				</tr>
-				<!-- <tr>
-                    <td>9/15/2022 - 9/29/2022</td>
-                    <td>AXQBX81AZXLX</td>
-                    <td>Associate</td>
-                    <td>Paid</td>
-                </tr>
-                <tr>
-                    <td>9/15/2022 - 9/29/2022</td>
-                    <td>AXQBX81AZXLX</td>
-                    <td>Associate</td>
-                    <td>Paid</td>
-                </tr>
-                <tr>
-                    <td>9/15/2022 - 9/29/2022</td>
-                    <td>AXQBX81AZXLX</td>
-                    <td>Associate</td>
-                    <td>Paid</td>
-                </tr> -->
-			</table>
-		</div>
-		<div id="mail-interface">
-			<h1>maail</h1>
-		</div>
-
-
-
-		<!-- for calculation interface -->
-
-		<script>
-
-			const profileButtons = document.getElementsByClassName("profile-btn");
-			const profileNames = document.getElementsByClassName("profile-name");
-			const profilePositions = document.getElementsByClassName("profile-position");
-			const profileTaxStatuses = document.getElementsByClassName("profile-taxStatus");
-			const profileSalaryTypes = document.getElementsByClassName("profile-salaryType");
-
-			const profileTWDayss = document.getElementsByClassName("profile-TWDays");
-			const profileTWHourss = document.getElementsByClassName("profile-TWHours");
-			const TWTime = document.getElementsByClassName("profile-TWTime");
-
-			const profileRates = document.getElementsByClassName("profile-rate");
-			const profileUnpaidLeaves = document.getElementsByClassName("profile-unpaidLeave");
-			const profileTaxableLeaves = document.getElementsByClassName("profile-taxableLeave");
-			const profileBonuses = document.getElementsByClassName("profile-bonus");
-			const profileInsuranceRates = document.getElementsByClassName("profile-insuranceRate");
-			const profilePenaltiess = document.getElementsByClassName("profile-penalties");
-			const profileOvertimeHourss = document.getElementsByClassName("profile-overtimeHours");
-			const profileUndertimeHourss = document.getElementsByClassName("profile-undertimeHours");
-
-			const employeeInfo = document.getElementById("employee-info");
-			const payrollInfo = document.getElementById("payroll-info");
-
-			let employeeIndex = 0;
-
-			for (let i = 0; i < profileButtons.length; i++) {
-				const btn = profileButtons.item(i);
-				const profileName = profileNames.item(i).dataset.name;
-				const profilePosition = profilePositions.item(i).dataset.position;
-				const profileTaxStatus = profileTaxStatuses.item(i).dataset.taxstatus;
-				const profileSalaryType = profileSalaryTypes.item(i).dataset.salarytype;
-				let profileTWDays;
-				let TWTime;
-				let profileTWHours;
-				if (profileSalaryType == "DRate") {
-					profileTWDays = profileTWDayss.item(i).dataset.twdays;
-					TWTime = profileTWDays;
-				}
-				else {
-					profileTWHours = profileTWHourss.item(i).dataset.twhours;
-					TWTime = profileTWHours;
-				}
-				// const profileTWDays = profileTWDayss.item(i).dataset.twdays;
-				// const profileTWHours = profileTWHourss.item(i).dataset.twhours;
-				const profileRate = profileRates.item(i).dataset.rate;
-				const profileUnpaidLeave = profileUnpaidLeaves.item(i).dataset.unpaidleave;
-				const profileTaxableLeave = profileTaxableLeaves.item(i).dataset.taxableleave;
-				const profileBonus = profileBonuses.item(i).dataset.bonus;
-				const profileInsuranceRate = profileInsuranceRates.item(i).dataset.insurancerate;
-				const profilePenalties = profilePenaltiess.item(i).dataset.penalties;
-				const profileOvertimeHours = profileOvertimeHourss.item(i).dataset.overtimehours;
-				const profileUndertimeHours = profileUndertimeHourss.item(i).dataset.undertimehours;
-
-				btn.addEventListener('click', () => {
-					employeeInfo.innerHTML = `
+			btn.addEventListener('click', () => {
+				employeeInfo.innerHTML = `
 				<h1>Name: ${profileName}</h1>
 				<h1>Position: ${profilePosition}</h1>
+				<h1>Department: ${profileDepartment}</h1>
+				<h1>Payroll Period: ${profilePayrollPeriod}</h1>
 				<h1>Tax Status: ${profileTaxStatus}</h1>
 				<h1>Salary Type: ${profileSalaryType}</h1>
 				<h1>Total Working Time: ${TWTime}</h1>
@@ -336,287 +209,348 @@
 				<h1>Penalties: ${profilePenalties}</h1>
 				<h1>Overtime Hours: ${profileOvertimeHours}</h1>
 				<h1>Undertime Hours: ${profileUndertimeHours}</h1>
+				<h1>Cash Advance Application: ${profileCashAdance}</h1>
 			`
-					employeeIndex = i;
-					// <h1>Total Working Days: ${profileTWDays}</h1>
-					// <h1>Total Working Hours: ${profileTWHours}</h1>
-				})
+			employeeIndex = i;
+			// <h1>Total Working Days: ${profileTWDays}</h1>
+			// <h1>Total Working Hours: ${profileTWHours}</h1>
+			})
+		}		
+		const employeeBtn = document.getElementById('employee-btn');
+		const employeeList = document.getElementById('employee-list');
+		const calculationInfo = document.getElementById("calculation-info");
+		const mailingInfo = document.getElementById("mailing-info");
+		employeeBtn.onclick = () => {
+			employeeList.style.display = 'flex'
+			calculationInfo.style.display = 'none';
+			mailingInfo.style.display = 'none';
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Employee'
+		}
+		const payrollBtn = document.getElementById('payroll-btn');
+		payrollBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			calculationInfo.style.display = 'none';
+			mailingInfo.style.display = 'none';
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Payroll'
+		}
+		let basicSalaryPass;
+		let leaveDeductionPass;
+		let overtimePayPass;
+		let undertimePenaltyPass;
+		let monthlyPremiumPass;
+		let employeeContributionPass;
+		let employeeSharePass;
+		let totalEarningsPass;
+		let totalDeductionsPass;
+		let NetPayPass;
+		const calcBtn = document.getElementById('calc-btn');
+		calcBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			calculationInfo.style.display = 'flex';
+			mailingInfo.style.display = 'none';
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Calculation'
+
+			const profileName = profileNames.item(employeeIndex).dataset.name;
+			const profilePosition = profilePositions.item(employeeIndex).dataset.position;
+
+			let totalEarnings = 0; //running
+			let totalDeductions = 0; //running
+			//calculation for basic salary
+			const profileRate = profileRates.item(employeeIndex).dataset.rate;
+			const profileSalaryType = profileSalaryTypes.item(employeeIndex).dataset.salarytype;
+			let profileTWDays;
+			let TWTime;
+			let profileTWHours;
+			if (profileSalaryType == "DRate"){
+				profileTWDays = profileTWDayss.item(employeeIndex).dataset.twdays;
+				TWTime = profileTWDays;
 			}
-
-			const paystationBtn = document.getElementById('paystation-btn');
-			const paystationinterface = document.getElementById('paystation-interface');
-
-			paystationBtn.onclick = () => {
-				employeeList.style.display = 'none';
-				payrollinterface.style.display = 'none';
-				calcinterface.style.display = 'none';
-				HRinterface.style.display = 'none';
-				auditinterface.style.display = 'none';
-				mailinterface.style.display = 'none';
-				const mainTitle = document.getElementById('main-title');
-				mainTitle.style.opacity = '0.5'
-				const pageName = document.getElementById('pagename');
-				pageName.innerHTML = 'Employee'
+			else{
+				profileTWHours = profileTWHourss.item(employeeIndex).dataset.twhours;
+				TWTime = profileTWHours;
 			}
+			const basicSalary = Number(profileRate) * Number(TWTime);
+			basicSalaryPass = basicSalary; 
 
-			const employeeBtn = document.getElementById('employee-btn');
-			const employeeList = document.getElementById('employee-list');
-
-			employeeBtn.onclick = () => {
-				employeeList.style.display = 'flex';
-				payrollinterface.style.display = 'none';
-				calcinterface.style.display = 'none';
-				HRinterface.style.display = 'none';
-				auditinterface.style.display = 'none';
-				mailinterface.style.display = 'none';
-
-				const mainTitle = document.getElementById('main-title');
-				mainTitle.style.opacity = '0.5'
-				const pageName = document.getElementById('pagename');
-				pageName.innerHTML = 'Employee'
-
-
+			//calculations for the leaves
+			let profileUnpaidLeave = profileUnpaidLeaves.item(employeeIndex).dataset.unpaidleave;
+			let profileTaxableLeave = profileTaxableLeaves.item(employeeIndex).dataset.taxableleave;
+			let leaveDeduction = 0;
+			if (profileUnpaidLeave > profileTaxableLeave){
+				profileUnpaidLeave -= profileTaxableLeave;
+				if (profileSalaryType == "HRate"){
+					profileUnpaidLeave *= 8;
+				} //else nothing
+				leaveDeduction = Number(profileUnpaidLeave) * Number(profileRate);
 			}
-
-			const payrollBtn = document.getElementById('payroll-btn');
-			const payrollinterface = document.getElementById('payroll-interface');
-			payrollBtn.onclick = () => {
-				employeeList.style.display = 'none';
-				payrollinterface.style.display = 'flex';
-				calcinterface.style.display = 'none';
-				HRinterface.style.display = 'none';
-				auditinterface.style.display = 'none';
-				mailinterface.style.display = 'none';
-				const mainTitle = document.getElementById('main-title');
-				mainTitle.style.opacity = '0.5'
-				const pageName = document.getElementById('pagename');
-				pageName.innerHTML = 'Payroll'
-
+			else if (profileTaxableLeave < profileUnpaidLeave){
+				profileTaxableLeave -= profileUnpaidLeave;
+				//no leave deductions and the remaining Taxable Leave will carry over the next period
 			}
+			else {// if equal both the taxable and unpaid
+				leaveDeduction = 0; //no leave deduction
+			}
+			leaveDeductionPass = leaveDeduction;
+			totalDeductions += Number(leaveDeduction);
 
-			const calcBtn = document.getElementById('calc-btn');
-			const calcinterface = document.getElementById('calc-interface');
-			calcBtn.onclick = () => {
-				employeeList.style.display = 'none';
-				payrollinterface.style.display = 'none';
-				calcinterface.style.display = 'flex';
-				HRinterface.style.display = 'none';
-				auditinterface.style.display = 'none';
-				mailinterface.style.display = 'none';
-				const mainTitle = document.getElementById('main-title');
-				mainTitle.style.opacity = '0.5'
-				const pageName = document.getElementById('pagename');
-				pageName.innerHTML = 'Calculation'
-
-				const profileName = profileNames.item(employeeIndex).dataset.name;
-				const profilePosition = profilePositions.item(employeeIndex).dataset.position;
-
-				let totalEarnings = 0; //running
-				//calculation for basic salary
-				const profileRate = profileRates.item(employeeIndex).dataset.rate;
-				const profileSalaryType = profileSalaryTypes.item(employeeIndex).dataset.salarytype;
-				let profileTWDays;
-				let TWTime;
-				let profileTWHours;
-				if (profileSalaryType == "DRate") {
-					profileTWDays = profileTWDayss.item(employeeIndex).dataset.twdays;
-					TWTime = profileTWDays;
-				}
-				else {
-					profileTWHours = profileTWHourss.item(employeeIndex).dataset.twhours;
-					TWTime = profileTWHours;
-				}
-				const basicSalary = Number(profileRate) * Number(TWTime);
-
-				//calculation for additional allowance
-				const profileBonus = profileBonuses.item(employeeIndex).dataset.bonus;
-				totalEarnings = Number(basicSalary) + Number(profileBonus);
-				//reminder that the totalEarning is accumulative
-
-				//---------------Philhealth---------------
-
-				let MonthlyPremium = 0;
-				if (basicSalary <= 10000) {
-					//the amount will be deivided by the employee and employer
-					MonthlyPremium = 400 / 2;
-				}
-				else if (basicSalary >= 10000.01 && basicSalary <= 79999.99) {
-					//total contributions is 4%
-					//the amount will be deivided by the employee and employer
-					MonthlyPremium += (basicSalary * 0.04) / 2;
-				}
-				else {
-					//the amount will be deivided by the employee and employer
-					MonthlyPremium = 3200 / 2;
-				}
-
-				totalDeductions += MonthlyPremium;
+			//calculation for additional allowance
+			const profileBonus = profileBonuses.item(employeeIndex).dataset.bonus;
+			totalEarnings += Number(basicSalary) + Number(profileBonus);
+			//reminder that the totalEarning is accumulative, and so was totalDeductions
 
 
+			//calculation for penalties
+			const profilePenalties = profilePenaltiess.item(employeeIndex).dataset.penalties;
+			totalDeductions += Number(profilePenalties);
 
+			//calculation for Overtime Pay
+			const profileOvertimeHours = profileOvertimeHourss.item(employeeIndex).dataset.overtimehours;
+			console.log("OVertime hours: "+ profileOvertimeHours);
+			let OTRate;
+			let OvertimePay;
+			if (profileSalaryType == "DRate"){
+				OTRate = Number(profileRate) / 8; //convert daily rate to hourly rate
+				OTRate *= 1.5; //standard
+			} else { //if using hourly rate already, just the standard ot rate
+				OTRate = 1.5;
+			}
+			console.log("OTRate: " + OTRate);
+			OvertimePay = Number(OTRate) * Number(profileOvertimeHours);
+			console.log("Overtime Pay: " + OvertimePay);
+			totalEarnings += OvertimePay;
+			overtimePayPass = OvertimePay;
+			//calculation for Undertime Penalty
+			const profileUndertimeHours = profileUndertimeHourss.item(employeeIndex).dataset.undertimehours;
+			let UndertimePenalty;
+			if (profileSalaryType == "DRate"){ //divide daily rate for hourly rate
+				UndertimePenalty = (Number(profileRate) / 8) * Number(profileUndertimeHours);
+			} else { //if using hourly rate already, just the standard ot rate
+				UndertimePenalty = Number(profileRate) * Number(profileUndertimeHours);
+			}
+			console.log(UndertimePenalty);
+			totalDeductions += UndertimePenalty;
+			undertimePenaltyPass = UndertimePenalty;
 
-				// //---------------SSS---------------
+			//calculation for .... diri mo continue guys
 
-				// let EmployeeContribution = 0;
-				// if (basicSalary >= 1 && basicSalary <= 999.99) { EmployeeContribution = 0; }
-				// else if (basicSalary >= 1000 && basicSalary <= 3249.99) { EmployeeContribution = 135.00; }
-				// else if (basicSalary >= 3250 && basicSalary <= 3749.99) { EmployeeContribution = 157.50; }
-				// else if (basicSalary >= 3750 && basicSalary <= 4249.99) { EmployeeContribution = 180.00; }
-				// else if (basicSalary >= 4250 && basicSalary <= 4749.99) { EmployeeContribution = 202.50; }
-				// else if (basicSalary >= 4750 && basicSalary <= 5249.99) { EmployeeContribution = 225.00; }
-				// else if (basicSalary >= 5250 && basicSalary <= 5749.99) { EmployeeContribution = 247.50; }
-				// else if (basicSalary >= 5750 && basicSalary <= 6249.99) { EmployeeContribution = 270.00; }
-				// else if (basicSalary >= 6250 && basicSalary <= 6749.99) { EmployeeContribution = 292.50; }
-				// else if (basicSalary >= 6750 && basicSalary <= 7249.99) { EmployeeContribution = 315.00; }
-				// else if (basicSalary >= 7250 && basicSalary <= 7749.99) { EmployeeContribution = 337.50; }
-				// else if (basicSalary >= 7750 && basicSalary <= 8249.99) { EmployeeContribution = 360.00; }
-				// else if (basicSalary >= 8250 && basicSalary <= 8749.99) { EmployeeContribution = 382.50; }
-				// else if (basicSalary >= 8750 && basicSalary <= 9249.99) { EmployeeContribution = 405.00; }
-				// else if (basicSalary >= 9250 && basicSalary <= 9749.99) { EmployeeContribution = 427.50; }
-				// else if (basicSalary >= 9750 && basicSalary <= 10249.99) { EmployeeContribution = 450.00; }
-				// else if (basicSalary >= 10250 && basicSalary <= 10749.99) { EmployeeContribution = 472.50; }
-				// else if (basicSalary >= 10750 && basicSalary <= 11249.99) { EmployeeContribution = 495.00; }
-				// else if (basicSalary >= 11250 && basicSalary <= 11749.99) { EmployeeContribution = 517.50; }
-				// else if (basicSalary >= 11750 && basicSalary <= 12249.99) { EmployeeContribution = 540.00; }
-				// else if (basicSalary >= 12250 && basicSalary <= 12749.99) { EmployeeContribution = 562.50; }
-				// else if (basicSalary >= 12750 && basicSalary <= 13249.99) { EmployeeContribution = 585.00; }
-				// else if (basicSalary >= 13250 && basicSalary <= 13749.99) { EmployeeContribution = 607.50; }
-				// else if (basicSalary >= 13750 && basicSalary <= 14249.99) { EmployeeContribution = 630.00; }
-				// else if (basicSalary >= 14250 && basicSalary <= 14749.99) { EmployeeContribution = 652.50; }
-				// else if (basicSalary >= 14750 && basicSalary <= 15249.99) { EmployeeContribution = 675.00; }
-				// else if (basicSalary >= 15250 && basicSalary <= 15749.99) { EmployeeContribution = 697.50; }
-				// else if (basicSalary >= 15750 && basicSalary <= 16249.99) { EmployeeContribution = 720.00; }
-				// else if (basicSalary >= 16250 && basicSalary <= 16749.99) { EmployeeContribution = 742.50; }
-				// else if (basicSalary >= 16750 && basicSalary <= 17249.99) { EmployeeContribution = 765.00; }
-				// else if (basicSalary >= 17250 && basicSalary <= 17749.99) { EmployeeContribution = 787.50; }
-				// else if (basicSalary >= 17750 && basicSalary <= 18249.99) { EmployeeContribution = 810.00; }
-				// else if (basicSalary >= 18250 && basicSalary <= 18749.99) { EmployeeContribution = 832.50; }
-				// else if (basicSalary >= 18750 && basicSalary <= 19249.99) { EmployeeContribution = 855.00; }
-				// else if (basicSalary >= 19250 && basicSalary <= 19749.99) { EmployeeContribution = 877.50; }
-				// else if (basicSalary >= 19750 && basicSalary <= 20249.99) { EmployeeContribution = 900.00; }
-				// else if (basicSalary >= 20250 && basicSalary <= 20749.99) { EmployeeContribution = 922.50; }
-				// else if (basicSalary >= 20750 && basicSalary <= 21249.99) { EmployeeContribution = 945.00; }
-				// else if (basicSalary >= 21250 && basicSalary <= 21749.99) { EmployeeContribution = 967.50; }
-				// else if (basicSalary >= 21750 && basicSalary <= 22249.99) { EmployeeContribution = 990.00; }
-				// else if (basicSalary >= 22250 && basicSalary <= 22749.99) { EmployeeContribution = 1012.50; }
-				// else if (basicSalary >= 22750 && basicSalary <= 23249.99) { EmployeeContribution = 1035.00; }
-				// else if (basicSalary >= 23250 && basicSalary <= 23749.99) { EmployeeContribution = 1057.50; }
-				// else if (basicSalary >= 23750 && basicSalary <= 24249.99) { EmployeeContribution = 1080.00; }
-				// else if (basicSalary >= 24250 && basicSalary <= 24749.99) { EmployeeContribution = 1102.50; }
-				// else { EmployeeContribution = 1125.00; }
-				// totalDeductions += EmployeeContribution;
+			//calculation for Insurance deductions
+			//const basicSalary = 1000;
+			//let totalDeductions = 0;
+			let existingdeductions = totalDeductions;
 
+			//Philhealth
+			let MonthlyPremium = 0;
+			if (basicSalary <= 10000) {
+ 		   		MonthlyPremium = 400;
+			}
+			else if (basicSalary >= 10000.01 && basicSalary <= 79999.99) {
+			    MonthlyPremium += basicSalary * 0.04;
+			}
+			else {
+			    MonthlyPremium = 3200;
+			}
+			monthlyPremiumPass = MonthlyPremium;
+			totalDeductions += MonthlyPremium;
 
+			//SSS
+			let EmployeeContribution = 0;
+			if (basicSalary >= 1 && basicSalary <= 999.99) { EmployeeContribution = 0; }
+			else if (basicSalary >= 1000 && basicSalary <= 3249.99) { EmployeeContribution = 135.00; }
+			else if (basicSalary >= 3250 && basicSalary <= 3749.99) { EmployeeContribution = 157.50; }
+			else if (basicSalary >= 3750 && basicSalary <= 4249.99) { EmployeeContribution = 180.00; }
+			else if (basicSalary >= 4250 && basicSalary <= 4749.99) { EmployeeContribution = 202.50; }
+			else if (basicSalary >= 4750 && basicSalary <= 5249.99) { EmployeeContribution = 225.00; }
+			else if (basicSalary >= 5250 && basicSalary <= 5749.99) { EmployeeContribution = 247.50; }
+			else if (basicSalary >= 5750 && basicSalary <= 6249.99) { EmployeeContribution = 270.00; }
+			else if (basicSalary >= 6250 && basicSalary <= 6749.99) { EmployeeContribution = 292.50; }
+			else if (basicSalary >= 6750 && basicSalary <= 7249.99) { EmployeeContribution = 315.00; }
+			else if (basicSalary >= 7250 && basicSalary <= 7749.99) { EmployeeContribution = 337.50; }
+			else if (basicSalary >= 7750 && basicSalary <= 8249.99) { EmployeeContribution = 360.00; }
+			else if (basicSalary >= 8250 && basicSalary <= 8749.99) { EmployeeContribution = 382.50; }
+			else if (basicSalary >= 8750 && basicSalary <= 9249.99) { EmployeeContribution = 405.00; }
+			else if (basicSalary >= 9250 && basicSalary <= 9749.99) { EmployeeContribution = 427.50; }
+			else if (basicSalary >= 9750 && basicSalary <= 10249.99) { EmployeeContribution = 450.00; }
+			else if (basicSalary >= 10250 && basicSalary <= 10749.99) { EmployeeContribution = 472.50; }
+			else if (basicSalary >= 10750 && basicSalary <= 11249.99) { EmployeeContribution = 495.00; }
+			else if (basicSalary >= 11250 && basicSalary <= 11749.99) { EmployeeContribution = 517.50; }
+			else if (basicSalary >= 11750 && basicSalary <= 12249.99) { EmployeeContribution = 540.00; }
+			else if (basicSalary >= 12250 && basicSalary <= 12749.99) { EmployeeContribution = 562.50; }
+			else if (basicSalary >= 12750 && basicSalary <= 13249.99) { EmployeeContribution = 585.00; }
+			else if (basicSalary >= 13250 && basicSalary <= 13749.99) { EmployeeContribution = 607.50; }
+			else if (basicSalary >= 13750 && basicSalary <= 14249.99) { EmployeeContribution = 630.00; }
+			else if (basicSalary >= 14250 && basicSalary <= 14749.99) { EmployeeContribution = 652.50; }
+			else if (basicSalary >= 14750 && basicSalary <= 15249.99) { EmployeeContribution = 675.00; }
+			else if (basicSalary >= 15250 && basicSalary <= 15749.99) { EmployeeContribution = 697.50; }
+			else if (basicSalary >= 15750 && basicSalary <= 16249.99) { EmployeeContribution = 720.00; }
+			else if (basicSalary >= 16250 && basicSalary <= 16749.99) { EmployeeContribution = 742.50; }
+			else if (basicSalary >= 16750 && basicSalary <= 17249.99) { EmployeeContribution = 765.00; }
+			else if (basicSalary >= 17250 && basicSalary <= 17749.99) { EmployeeContribution = 787.50; }
+			else if (basicSalary >= 17750 && basicSalary <= 18249.99) { EmployeeContribution = 810.00; }
+			else if (basicSalary >= 18250 && basicSalary <= 18749.99) { EmployeeContribution = 832.50; }
+			else if (basicSalary >= 18750 && basicSalary <= 19249.99) { EmployeeContribution = 855.00; }
+			else if (basicSalary >= 19250 && basicSalary <= 19749.99) { EmployeeContribution = 877.50; }
+			else if (basicSalary >= 19750 && basicSalary <= 20249.99) { EmployeeContribution = 900.00; }
+			else if (basicSalary >= 20250 && basicSalary <= 20749.99) { EmployeeContribution = 922.50; }
+			else if (basicSalary >= 20750 && basicSalary <= 21249.99) { EmployeeContribution = 945.00; }
+			else if (basicSalary >= 21250 && basicSalary <= 21749.99) { EmployeeContribution = 967.50; }
+			else if (basicSalary >= 21750 && basicSalary <= 22249.99) { EmployeeContribution = 990.00; }
+			else if (basicSalary >= 22250 && basicSalary <= 22749.99) { EmployeeContribution = 1012.50; }
+			else if (basicSalary >= 22750 && basicSalary <= 23249.99) { EmployeeContribution = 1035.00; }
+			else if (basicSalary >= 23250 && basicSalary <= 23749.99) { EmployeeContribution = 1057.50; }
+			else if (basicSalary >= 23750 && basicSalary <= 24249.99) { EmployeeContribution = 1080.00; }
+			else if (basicSalary >= 24250 && basicSalary <= 24749.99) { EmployeeContribution = 1102.50; }
+			else { EmployeeContribution = 1125.00; }
+			totalDeductions += EmployeeContribution;
+			employeeContributionPass = EmployeeContribution;
+			//pagibig
+			let EmployeesShare = 0;
+			if (basicSalary <= 1500) {
+    			EmployeesShare = basicSalary * 0.01;
+			}
+			else {
+    			EmployeesShare = basicSalary * 0.02;
+			}
+			employeeSharePass = EmployeesShare;
+			totalDeductions += EmployeesShare;
+			/*test*/
+			// console.log("Monthly Salary: " + basicSalary);
+			// console.log("existing deductions: " + existingdeductions);
+			// console.log("philheath rate: " + MonthlyPremium);
+			// console.log("SSS rate:" + EmployeeContribution);
+			// console.log("Pagibig rate:" + EmployeesShare);
+			// console.log("Total Deduction: " + totalDeductions);
+			/*test*/
+			//end of Insurance deductions
 
-
-				// //---------------pagibig---------------
-
-				// let EmployeesShare = 0;
-				// if (basicSalary <= 1500) {
-				// 	//total contribution is 3%
-				// 	//the amount will be deivided, 1% for employee and 2% for employer
-				// 	EmployeesShare = basicSalary * 0.01;
-
-				// }
-				// else {
-				// 	//total contributions is 4%
-				// 	//the amount will be deivided by the employee and employer
-				// 	EmployeesShare = basicSalary * 0.02;
-				// }
-				// totalDeductions += EmployeesShare;
-
-
-
-
-
-				// /*test*/
-				// // var overtime = 2000;
-				// // var allowance = 3000;
-				// /*test*/
-
-
-				// // ---------------Withholding Tax----------------
-
-				// let MonthlyIncomeTAX = 0;
-				// // add the taxable benefits here (allowance, overtime and etc)
-				// let CompensationIncome = basicSalary + allowance + overtimehours;
-
-				// if (CompensationIncome <= 20833) {
-				// 	MonthlyIncomeTAX = 0;
-				// }
-				// else if (CompensationIncome > 20833 && CompensationIncome <= 33332) {
-				// 	MonthlyIncomeTAX = (CompensationIncome - 20833) * .20;
-				// }
-				// else if (CompensationIncome >= 33333 && CompensationIncome <= 66666) {
-				// 	MonthlyIncomeTAX = 2500 + ((CompensationIncome - 33333) * .25);
-				// }
-				// else if (CompensationIncome >= 66667 && CompensationIncome <= 166666) {
-				// 	MonthlyIncomeTAX = 10833.33 + ((CompensationIncome - 66667) * .30);
-				// }
-				// else if (CompensationIncome >= 166667 && CompensationIncome <= 666666) {
-				// 	MonthlyIncomeTAX = 40833.33 + ((CompensationIncome - 166667) * .32);
-				// }
-				// else if (CompensationIncome >= 666667) {
-				// 	MonthlyIncomeTAX = 200833.33 + (CompensationIncome * .35);
-				// }
-
-				//display of calculations
-				calculationInfo.innerHTML = `
+			//calculation for Net Pay, ayaw na ni hilabti guys
+			//ang totalEarnings ra and totalDeductions ang running, untouchable na ni
+			const NetPay = Number(totalEarnings) - Number(totalDeductions);
+			NetPayPass = NetPay;
+			//display of calculations
+			calculationInfo.innerHTML = `
 			<h1>Name: ${profileName}</h1>
 			<h1>Position: ${profilePosition}</h1>
 			<h1>Basic Salary: ${basicSalary}</h1>
+			<h1>Leave Deductions: ${leaveDeduction}</h1>
+			<h1>Bonus/Allowance: ${profileBonus}</h1>
+			<h1>Misc Penalties: ${profilePenalties}</h1>
+			<h1>Overtime Pay: ${OvertimePay}</h1>
+			<h1>Undertime Penalty: ${UndertimePenalty}</h1>
+			<h1>Philhealth: ${MonthlyPremium}</h1>
+			<h1>SSS: ${EmployeeContribution}</h1>
+			<h1>Pagibig: ${EmployeesShare}</h1>
 			<h1>Total Earnings: ${totalEarnings}</h1>
+			<h1>Total Deductions: ${totalDeductions}</h1>
+			<h1>Net Pay: ${NetPay}</h1>
 			`
-			}
+		}
+		const hrBtn = document.getElementById('hr-btn');
+		hrBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			calculationInfo.style.display = 'none';
+			mailingInfo.style.display = 'none';
 
-			const hrBtn = document.getElementById('hr-btn');
-			const HRinterface = document.getElementById('hr-interface');
-			hrBtn.onclick = () => {
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'HR'
+		}
+		const auditBtn = document.getElementById('audit-btn');
+		auditBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			calculationInfo.style.display = 'none';
+			mailingInfo.style.display = 'none';
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Audit Trail'
+		}
+		const mailBtn = document.getElementById('mail-btn');
+		mailBtn.onclick = () => {
+			employeeList.style.display = 'none'
+			calculationInfo.style.display = 'none';
+			mailingInfo.style.display = 'flex';
+			const mainTitle = document.getElementById('main-title');
+			mainTitle.style.opacity = '0.5'
+			const pageName = document.getElementById('pagename');
+			pageName.innerHTML = 'Mail'
 
-				employeeList.style.display = 'none';
-				payrollinterface.style.display = 'none';
-				calcinterface.style.display = 'none';
-				HRinterface.style.display = 'flex';
-				auditinterface.style.display = 'none';
-				mailinterface.style.display = 'none';
-				const mainTitle = document.getElementById('main-title');
-				mainTitle.style.opacity = '0.5'
-				const pageName = document.getElementById('pagename');
-				pageName.innerHTML = 'Payroll'
-			}
+			//gettiing data from employee profile
+			const profileName = profileNames.item(employeeIndex).dataset.name;
+			const profilePosition = profilePositions.item(employeeIndex).dataset.position;
+			const profileDepartment = profileDepartments.item(employeeIndex).dataset.department;
+			const profilePayrollPeriod = profilePayrollPeriods.item(employeeIndex).dataset.payrollperiod;
+			const profileBonus = profileBonuses.item(employeeIndex).dataset.bonus;
+			const profilePenalties = profilePenaltiess.item(employeeIndex).dataset.penalties;
+			console.log("From Mail btn, Penalty: " + profilePenalties);
+			//getting data from calculations
+			const displayBasicSalary = basicSalaryPass;
+			const displayLeaveDeduction = leaveDeductionPass;
+			const displayOTP = overtimePayPass;
+			const displayUTP = undertimePenaltyPass;
+			const displayMonthlyPremium = monthlyPremiumPass;
+			const displayEmployeeContribution = employeeContributionPass;
+			const displayEmployeeShare = employeeSharePass;
+			const displayTotalEarnings = totalEarningsPass;
+			const displayTotalDeductions = totalDeductionsPass;
+			const displayNetPay = NetPayPass;
+			//for checking, console logs
+			console.log("Basic Salary Pass: " + displayBasicSalary);
+			console.log("Leave Deduc: " + displayLeaveDeduction);
+			console.log("OTP: " + displayOTP);
+			console.log("UTP: " + displayUTP);
+			console.log("Monthly Prem: " + displayMonthlyPremium);
+			console.log("Employee Contri: " + displayEmployeeContribution);
+			console.log("EmployeesShare: " + displayEmployeeShare);
+			console.log("totalEarnings: " + displayTotalEarnings);
+			console.log("totalDeductions: " + displayTotalDeductions);
+			console.log("NetPayPass: " + displayNetPay);
 
-			const auditBtn = document.getElementById('audit-btn');
-			const auditinterface = document.getElementById('audit-interface');
-			auditBtn.onclick = () => {
-				employeeList.style.display = 'none';
-				payrollinterface.style.display = 'none';
-				calcinterface.style.display = 'none';
-				HRinterface.style.display = 'none';
-				auditinterface.style.display = 'flex';
-				mailinterface.style.display = 'none';
-				const mainTitle = document.getElementById('main-title');
-				mainTitle.style.opacity = '0.5'
-				const pageName = document.getElementById('pagename');
-				pageName.innerHTML = 'Audit Trail'
-			}
-			const mailBtn = document.getElementById('mail-btn');
-			const mailinterface = document.getElementById('mail-interface');
-			mailBtn.onclick = () => {
-				employeeList.style.display = 'none';
-				payrollinterface.style.display = 'none';
-				calcinterface.style.display = 'none';
-				HRinterface.style.display = 'none';
-				auditinterface.style.display = 'none';
-				mailinterface.style.display = 'flex';
 
-				const mainTitle = document.getElementById('main-title');
-				mainTitle.style.opacity = '0.5'
-				const pageName = document.getElementById('pagename');
-				pageName.innerHTML = 'Mail'
-			}
-		</script>
-		<script type="type/javascript"></script>
+			fetch("/pdf",
+			{
+    		headers: {
+	      		'Accept': 'application/pdf',
+	      		'Content-Type': 'application/json'
+ 	   		},
+		    method: "POST",
+		    body: JSON.stringify({
+		    	profileName,
+		    	profilePosition,
+		    	profileDepartment,
+		    	profilePayrollPeriod,
+		    	profileBonus,
+		    	profilePenalties,
+		    	displayBasicSalary,
+		    	displayLeaveDeduction,
+		    	displayOTP,
+		    	displayUTP,
+		    	displayMonthlyPremium,
+		    	displayEmployeeContribution,
+		    	displayEmployeeShare,
+		    	displayTotalEarnings,
+		    	displayTotalDeductions,
+		    	displayNetPay
+		    	})
+			})
+			.then(function(res){ console.log(res) })
+			.catch(function(res){ console.log(res) })
 
+			//generating pdf
+			//const PDFDocument = require('pdfkit');
+			
+		}
+	</script>
+	<script type="type/javascript"></script>
 
 </body>
 

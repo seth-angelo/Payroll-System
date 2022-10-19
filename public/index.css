@@ -2,80 +2,69 @@ body {
     background-color: #a3cef1;
 }
 
-form {
-    text-align: center;
-    border-color: yellow;
+form{
+	text-align: center;
+	border-color: yellow;
 }
-
 .profile {
-    border: 1px solid black;
-    width: 50%;
-    margin: auto;
-    margin-bottom: 16px;
+	border: 1px solid black;
+	width: 50%;
+	margin: auto;
+	margin-bottom: 16px;
 }
 
 .field {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 325px;
-    margin: auto;
-    margin-bottom: 16px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 325px;
+	margin: auto;
+	margin-bottom: 16px;
 }
-
-.main {
-    display: flex;
-    height: 100vh;
-    width: 100%;
+.main{
+	display: flex;
+	height: 100vh;
+	width: 100%;
 
 }
-
-.sideBar {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid red;
-    width: 20%;
+.sideBar{
+	display: flex;
+	flex-direction: column;
+	border: 2px solid red;
+	width: 20%;
 }
-
-.title {
-    text-align: center;
-    padding-top: 100px;
+.title{
+	text-align: center;
+	padding-top: 100px;
 }
-
-.login {
-    margin: auto;
-    text-align: center;
-    padding-top: 50px;
-    width: 500px;
-    height: 300px;
-    border: 5px solid blueviolet;
-    border-radius: 7%;
+.login{
+	margin: auto;
+	text-align: center;
+	padding-top: 50px;
+	width: 500px;
+	height: 300px;
+	border: 5px solid blueviolet;
+	border-radius: 7%;
 }
-
-.label {
-    margin: auto;
+.label{
+	margin: auto;
 }
-
-.reset,
-.back {
-    margin-top: 15px;
-    margin-left: 15px;
+.reset, .back{
+	margin-top: 15px;
+	margin-left: 15px;
 }
-
-.loginButton {
-    background: #0515f8f3;
-    color: black;
-    border: 2px violet;
-    cursor: pointer;
+.loginButton{
+	background: #0515f8f3;
+	color: black;
+	border: 2px violet;
+	cursor: pointer;
 }
-
 * {
-    margin: 0;
+	margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-
 .navbar {
     background-color: #FFFFFF;
 }
@@ -376,7 +365,7 @@ h6 {
 }
 
 .container1-fluid {
-    width: 100%;
+	width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -452,7 +441,6 @@ section .title2 {
     padding-left: 20px;
 }
 
-
 .container2 {
     width: 800px;
     padding: 3em;
@@ -469,230 +457,26 @@ section .title2 {
 }
 
 .employee-list {
-    display: none;
+	display: none;
 }
 
 .employee-btns {
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    z-index: 100;
-    position: relative;
-
-}
-
-.titlebar {
-    /* width: 39%; */
-    width: 505px;
-    height: 30px;
-    background-color: lightcyan;
-    position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	z-index: 100;
 }
 
 .main-title {
-    position: absolute;
+	position: absolute;
 }
 
 #calculation-info {
-    display: none;
-    flex-direction: column;
+	display: none;
+	flex-direction: column;
 }
 
-.profile-btn {
-    padding-top: 30px;
-    width: 500px;
-    height: 80px;
-    border-color: grey;
-    background-color: #e2eafc;
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 10px;
-
-}
-
-.profile-pic {
-
-    margin-left: 15px;
-    width: 166px;
-}
-
-.employee-name {
-    padding-left: 90px;
-    float: left;
-    font-size: 30px;
-
-
-}
-
-.employee-position {
-    padding-right: 90px;
-    font-size: 30px;
-    float: right;
-}
-
-.jobtitle {
-    padding-left: 50px;
-    font-size: 25px;
-}
-
-.employeename {
-    padding-left: 80px;
-    font-size: 25px;
-}
-
-/* --------payroll right side------ */
-
-
-.recenttitle {
-    padding-left: 20px;
-    font-size: 25px;
-
-    position: absolute;
-}
-
-.recenttitle button {
-    background-color: #e1e5f2;
-}
-
-/* --------right side of hr-------- divided into three------ */
-#rleft {
-    width: 33.33%;
-    float: left;
-    height: 100%;
-}
-
-#rright {
-    width: 33.33%;
-    float: right;
-    height: 100%;
-}
-
-#rmid {
-    width: 33.33%;
-    margin: 0 auto;
-    height: 100%;
-
-}
-
-/* box info */
-.data input {
-    height: 100%;
-    width: 100%;
-    font-size: 17px;
-    border-radius: 6px;
-    border: 2px solid #3A57E8;
-}
-
-.data {
-    height: 45px;
-    width: 90%;
-    margin: 50px 0;
-    font-weight: 600;
-    font-size: 20px;
-}
-
-/* HR left contents */
-
-.right-container-left {
-    float: left;
-    padding-left: 10px;
-    padding-top: 96px;
-
-}
-
-/* HR right contents */
-.right-container-right {
-    float: right;
-    padding-left: 10px;
-
-}
-
-/* HR mid contents */
-
-.right-container-mid {
-    padding-left: 10px;
-    padding-top: 96px;
-}
-
-select {
-    border-radius: 6px;
-    border: 10px solid #3A57E8;
-}
-
-/* --------audit trail right side------ */
-/* table,
-tr {
-    width: 1079px;
-    height: 579px;
-    left: 265px;
-    top: 100px;
-    border-radius: 10px;
-    background-color: grey;
-
-} */
-
-table,
-th {
-
-
-    margin-left: 4%;
-    margin-right: 6%;
-    margin-top: 15%;
-    text-align: center;
-    border: 2px solid black;
-
-
-}
-
-.searchbar {
-    /* width: 1020px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 30px;
-    gap: 8px;
-
-    position: absolute;
-    left: 18.4%;
-    right: 6.67%;
-    top: 21.22%;
-    bottom: 74.11%;
-
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 4px; */
-    box-sizing: border-box;
-    /* Auto layout */
-
-    flex-direction: row;
-    align-items: center;
-    padding: 5px 16px;
-    /* gap: 8px; */
-    width: 76.5%;
-    position: absolute;
-    left: 10%;
-
-    top: 20%;
-    bottom: 74.11%;
-
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 4px;
-}
-
-.header {
-    position: absolute;
-    width: 355px;
-    height: 24px;
-    left: 500px;
-    top: 132px;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 150%;
-    /* or 38px */
-
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.02em;
+#mailing-info {
+	display: none;
+	flex-direction: column;
 }
