@@ -4,14 +4,13 @@ const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require('method-override');
 const nodemailer = require("nodemailer");
-
 const jwt = require("jsonwebtoken");
-
+const jwtSecret = 'paystation';
 const Profile = require("./models/profile");
 const Admin = require("./models/admin");
-const PasswordReset = require("./models/passwordReset");
-const userVerification = require("./models/userVerification");
-const passwordReset = require("./models/passwordReset");
+// const PasswordReset = require("./models/passwordReset");
+// const userVerification = require("./models/userVerification");
+// const passwordReset = require("./models/passwordReset");
 
 
 const app = express();
@@ -171,7 +170,7 @@ app.get("/home", (req, res, next) => {
 	})
 });
 
-// ! Forget Pass Page Backend
+// Forget Pass Page Backend
 // pass: paystation1111, generatedpass: ijpuvakcpoczjtuv
 app.get("/forgetpass", (req, res) => {
 	console.log("forgotPass");
@@ -192,7 +191,6 @@ app.post("/forgetPass", (req, res, next) => {
 				id: retrieved.id
 			}
 			const token = jwt.sign(payload, secret, {expiresIn: "30m"});
-			// * Need attach url app sa heroku. Not sure if this already works
 			const production  = 'https://pay-station.herokuapp.com';
 			const development = 'http://localhost:5000';
 			const link = (process.env.NODE_ENV ? production : development)  + `/resetPassword/${token}`;
@@ -231,7 +229,7 @@ app.post("/forgetPass", (req, res, next) => {
 		}
 	})
 	.catch((err) => { // No email found in database
-	// next(err)
+	next(err)
 	console.log("No email scanned in db");
 	res.render('Payroll_System/forgotconfirmation',
 	{ 
