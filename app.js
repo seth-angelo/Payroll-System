@@ -6,7 +6,6 @@ const methodOverride = require('method-override');
 const nodemailer = require("nodemailer");
 
 const jwt = require("jsonwebtoken");
-const { v4 : uuidv4 }= require("uuid");
 
 const Profile = require("./models/profile");
 const Admin = require("./models/admin");
@@ -63,17 +62,16 @@ mongoose.connect(mongoURI, {
 // DELETE - delete object
 
 
-/* 
-	* Note: Uncomment // next(err) for debugging
+/*
+	* Note: Uncomment // next(err) for debugging *
 */
 
 // Checking authentication
 app.use("/home*", (req, res, next) => {
+	console.log(app.locals.id);
 	let id = { _id : app.locals.id };
-	// console.log(admin);
 	Admin.findById(id)
 	.then((retrieved) => {
-		console.log(retrieved._id.toString());
 		if(!retrieved.loggedIn)
 			throw new Error;
 	})
@@ -91,7 +89,8 @@ app.use("/home*", (req, res, next) => {
 
 app.get("/", (req, res) => {
 	if(app.locals.name != null && app.locals.id != null) {
-		res.status(302).redirect('/home');
+		console.log("Logged in already. Redirecting...");
+		res.redirect('/home');
 	}
 	console.log("Logged Out/Login Page");
 	res.render('Payroll_System/login', {ERROR : null});
@@ -100,7 +99,8 @@ app.get("/", (req, res) => {
 // Sign in clicked
 app.post("/signIn", (req, res, next) => {
 	let temp = req.body;
-	console.log(temp.rememberMe);
+	app.locals.rememberMe = temp.rememberMe === undefined? false: true;
+	console.log(app.locals.rememberMe);
 	let admin = { email: temp.Username };
 	Admin.findOne(admin)
 	.then((retrieved) => {
@@ -131,10 +131,6 @@ app.get('/signOut', (req, res) => {
 		app.locals.name = null;
 		console.log(retrieved);
 	});
-	// Admin.findOneAndUpdate(admin, loggedOut, {new : true}, (err, retrieved) => {
-	// 	// console.log(retrieved);
-	// 	app.locals.name = null;
-	// });
 	res.status(200).redirect('/');
 });
 
@@ -176,14 +172,10 @@ app.get("/home", (req, res, next) => {
 });
 
 // ! Forget Pass Page Backend
-
-const jwtSecret = "paystation";
-
-
+// pass: paystation1111, generatedpass: ijpuvakcpoczjtuv
 app.get("/forgetpass", (req, res) => {
 	console.log("forgotPass");
 	res.render('Payroll_System/forgetpass', { Title: 'Password Reset' });
-	
 });
 
 app.post("/forgetPass", (req, res, next) => {
@@ -194,58 +186,49 @@ app.post("/forgetPass", (req, res, next) => {
 		if(retrieved == null)
 			throw new Error;
 		else { // Sending email link
-			// const resetString = uuidv4 + retrieved._id;
-			const secret = jwtSecret + retrieved.password;
-			console.log(retrieved.id);
+			const secret = jwtSecret;
 			const payload = {
 				email: retrieved.email,
 				id: retrieved.id
 			}
-			const token = jwt.sign(payload, secret, {expiresIn: "1m"});
-			// * Wala ko kaybaw unsaon pag set sa baseURL igka deploy sa app sa heroku
-			const link = `${process.env}/resetPassword/${retrieved.id}/${token}`;
-			// const link = process.env.PORT || 5000 + `/resetPassword/${retrieved.id}/${token}`;
-			// const link = `${req.baseUrl}/resetPassword/${retrieved.id}/${token}`;
+			const token = jwt.sign(payload, secret, {expiresIn: "30m"});
+			// * Need attach url app sa heroku. Not sure if this already works
+			const production  = 'https://pay-station.herokuapp.com';
+			const development = 'http://localhost:5000';
+			const link = (process.env.NODE_ENV ? production : development)  + `/resetPassword/${token}`;
 			console.log(link);
-			// ! Error pa siya
 			const tranporter = nodemailer.createTransport({
-				service: "gmail",
+				service: 'gmail',
 				auth: {
-					user: "nathanieldavid.116@gmail.com",
-					pass: "niSSan350z!",
+					user: 'softdevpaystation@gmail.com',
+					pass: 'ijpuvakcpoczjtuv'
 				},
-				// tls: {
-				// 	rejectUnauthorized: false
-				// }
-			});
-			const mailOptions = {
-				from: "nathanieldavid.116@gmail.com",
-				to: retrieved.email,
-				subject: "Paystation Password Reset",
-				text: `You have sent a password reset. Click on this link: ${link}`,
-			};
-			tranporter.sendMail(mailOptions, (err, success) => {
-				if(err)
-					console.log(err);
-				else {
-					console.log(success);
+				tls: {
+					rejectUnauthorized: false
 				}
-			})
-			// passwordReset.deleteMany({ userId: id })
-			// .then((received) => {
-			// 	const mailOptions = {
-			// 		from: process.env.AUTH_EMAIL,
-			// 	};
-			// })
-			// .catch();
-
+			});
+			tranporter.sendMail({
+				from: `<softdevpaystation@gmail.com>`,
+				to: retrieved.email,
+				subject: "Password Reset",
+				text: `Click here to reset password: ${link}`,
+				html: `<b>Click here to reset password: <a href=${link}>Paystation Reset Pass</a></b>`,
+			}, (err, success) => {
+				if(err) {
+					next(err)
+					console.log('Error. \n' + err);
+				}
+				else {
+					console.log("Ok. : \n" + success.response);
+					res.render('Payroll_System/forgotconfirmation',
+					{ 
+						Title: 'Password Reset',
+						Description: 'Please check your email for password reset instructions.',
+						ERROR: null
+					});
+				}
+			});
 		}
-		res.render('Payroll_System/forgotconfirmation',
-		{ 
-			Title: 'Password Reset',
-			Description: 'Please check your email for password reset instructions.',
-			ERROR: null
-		});
 	})
 	.catch((err) => { // No email found in database
 	// next(err)
@@ -259,26 +242,39 @@ app.post("/forgetPass", (req, res, next) => {
 	)});
 });
 
-// ? Dugangig string tumoy sa url sa ilang uid
-// Sent from mail
-app.get("/resetPassword/:id/:token", (req, res) => {
-	console.log(req.url);
-	console.log("Reset password form");
-	res.render("Payroll_System/resetpassword");
+// ? Assuming sent from mail
+app.get("/resetPassword/:token", (req, res) => {
+	try {
+		console.log("Reset password form:");
+		jwt.verify(req.params.token, jwtSecret);
+		res.render("Payroll_System/resetpassword");
+	} catch (error) {
+		res.status(404).render('Payroll_System/forgotconfirmation',
+		{ 
+			Title: 'Password Reset',
+			Description: null,
+			ERROR: 'Error link.'
+		});
+	}
 });
 
-app.post("/resetPassword", (req, res) => {
+app.post("/resetPassword/:token", (req, res) => {
+	console.log("Resseting Password..");
 	const temp = req.body;
-	console.log(temp);
-	console.log("Resseting Password");
-	res.render('Payroll_System/forgotconfirmation',
-	{ 
-		Title: 'Password Reset',
-		Description: 'Password resetted successfully.',
-		ERROR: null
+	const secret = jwt.verify(req.params.token, jwtSecret);
+	const email = { email: secret.email };
+	Admin.findOne(email)
+	.then((retrieved) => {
+		retrieved.password = temp.newPassword;
+		retrieved.save();
+		res.render('Payroll_System/forgotconfirmation',
+		{ 
+			Title: 'Password Reset',
+			Description: 'Password resetted successfully.',
+			ERROR: null
+		});
 	});
 });
-// ! End Forget Pass
 
 app.get("/hris", (req, res) => {
 	res.render('DUMMY_HRIS/index');
