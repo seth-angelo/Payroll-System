@@ -61,7 +61,7 @@
             <div id="footer">
                 <div class="item">
                     <a href="user"><img src="image/user_100px.png" class="userprofile" alt=""></a>
-                    <a href="user" class="user">John Smith</a>
+                    <a href="user" class="user"><%=  Name %> </a> 
                     <a href="position" class="position">
                         Accountant
                         Administrator
@@ -70,7 +70,7 @@
                 </div>
                 <div id="signout">
                     <a href="Paystation.html"><img src="image/sign_out_100px.png" class="signoutlogo" alt=""></a>
-                    <a href="/" class="signout">Sign out</a>
+                    <a href="/signOut" class="signout">Sign out</a>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
           	<div class="employee-btns">
           		<% for(let profile of profiles) { %>
 					<button class="profile-btn">
-						<div class="profile-name" data-name=<%= profile.name %>></div>
+						<div class="profile-name" data-name= <%= profile.name %>></div>
 						<div class="profile-position" data-position=<%= profile.position %>></div>
 						<div class="profile-department" data-department=<%= profile.department %>></div>
 						<div class="profile-payrollPeriod" data-payrollperiod=<%= profile.payrollPeriod %>></div>
@@ -144,10 +144,7 @@
 		const profileSalaryTypes = document.getElementsByClassName("profile-salaryType");
 
 		const profileTWDayss = document.getElementsByClassName("profile-TWDays");
-		// TODO
 		const profileTWHourss = document.getElementsByClassName("profile-TWHours");
-		console.log(profileTWHourss);
-		// End TODO
 
 		const TWTime = document.getElementsByClassName("profile-TWTime");
 

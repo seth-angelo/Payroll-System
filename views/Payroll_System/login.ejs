@@ -57,7 +57,7 @@
             </div>
             <div class="containercheckbox">
                 <!-- <label for="checkboxinput"></label> -->
-                <input type="checkbox">
+                <input type="checkbox" onclick="check()" id="rememberMe" name="rememberMe" value="yes">
                 <span class="checkmark">Remember me?</span>
 
                 <a href="/forgetpass">Forgot Password?</a>
@@ -68,24 +68,19 @@
             <div class="btn">
                 <div class="inner"></div>
                 <input type="submit" value="Sign In" onclick="location.href = '/signIn';">
-                <!-- <input type="button" value="Sign In" onclick="checkFields()"> -->
             </div>
-            <script>
-                // testing
-                function checkFields() {
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-                    if(!email || !password)
-                        alert('Please fill out the fields');
-                    else   
-                        document.getElementById('signing').submit();
-                }
-            </script>
             <div class="signup-link">
                 Don't have an account?
                 <a href="/signup">Click here to sign up.</a>
             </div>
         </form>
+        <script>
+            // Test
+            function check() {
+                const check = document.getElementById("rememberMe");
+                console.log(check.checked);
+            }
+        </script>
     </div>
 </body>
 

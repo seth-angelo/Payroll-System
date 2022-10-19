@@ -58,11 +58,11 @@
                 <div class="left col-6">
                     <div class="data">
                         <label for="firstname">Firstname</label>
-                        <input type="text" placeholder="Firstname" id="firstname" name="firstname">
+                        <input type="text" placeholder="Firstname" id="firstname" name="firstname" >
                     </div>
                     <div class="data">
                         <label for="email">Email</label>
-                        <input type="text" placeholder="Email" id="email" name="Username">
+                        <input type="email" placeholder="Email" id="email" name="Username" required>
                     </div>
                     <div class="data">
                         <label for="password">Password</label>
@@ -113,7 +113,6 @@
                     const password = document.getElementById('password').value;
                     const confirmpassword = document.getElementById('confirmpassword').value;
                     const agreed = document.getElementById('agreedTerms');
-                    // || !Number.isInteger(phoneNum);
                     if ((!firstname || !lastname || !email || !phoneNum || !password || !confirmpassword) || !Number.isInteger(phoneNum))
                         alert('Please fill out all proper fields');
                     else if (confirmpassword != password)
@@ -122,7 +121,7 @@
                         alert("Please check with terms of use");
                     else {
                         alert('Sign up successfully.');
-                        document.getElementById('formRegister').submit();
+                        // document.getElementById('formRegister').submit();
                     }
                 }
             </script>
