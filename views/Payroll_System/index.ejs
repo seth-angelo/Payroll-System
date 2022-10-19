@@ -434,6 +434,8 @@
 			//calculation for Net Pay, ayaw na ni hilabti guys
 			//ang totalEarnings ra and totalDeductions ang running, untouchable na ni
 			const NetPay = Number(totalEarnings) - Number(totalDeductions);
+			totalEarningsPass = totalEarnings;
+			totalDeductionsPass = totalDeductions;
 			NetPayPass = NetPay;
 			//display of calculations
 			calculationInfo.innerHTML = `
