@@ -506,16 +506,18 @@
 			const displayTotalDeductions = totalDeductionsPass;
 			const displayNetPay = NetPayPass;
 			//for checking, console logs
-			console.log("Basic Salary Pass: " + displayBasicSalary);
-			console.log("Leave Deduc: " + displayLeaveDeduction);
-			console.log("OTP: " + displayOTP);
-			console.log("UTP: " + displayUTP);
-			console.log("Monthly Prem: " + displayMonthlyPremium);
-			console.log("Employee Contri: " + displayEmployeeContribution);
-			console.log("EmployeesShare: " + displayEmployeeShare);
-			console.log("totalEarnings: " + displayTotalEarnings);
-			console.log("totalDeductions: " + displayTotalDeductions);
-			console.log("NetPayPass: " + displayNetPay);
+			// console.log("Basic Salary Pass: " + displayBasicSalary);
+			// console.log("Leave Deduc: " + displayLeaveDeduction);
+			// console.log("OTP: " + displayOTP);
+			// console.log("UTP: " + displayUTP);
+			// console.log("Monthly Prem: " + displayMonthlyPremium);
+			// console.log("Employee Contri: " + displayEmployeeContribution);
+			// console.log("EmployeesShare: " + displayEmployeeShare);
+			// console.log("totalEarnings: " + displayTotalEarnings);
+			// console.log("totalDeductions: " + displayTotalDeductions);
+			// console.log("NetPayPass: " + displayNetPay);
+
+			const filename = String("payslip-"+profileName+".pdf");
 
 
 			fetch("/pdf",
@@ -544,7 +546,21 @@
 		    	displayNetPay
 		    	})
 			})
-			.then(function(res){ console.log(res) })
+			.then(async function(res){ 
+				const blob = await res.blob();
+				console.log(blob); 
+				const newBlob = new Blob([blob]);
+				const blobUrl = window.URL.createObjectURL(newBlob);
+				const link = document.createElement('a');
+			    link.href = blobUrl;
+			    link.setAttribute('download', `${filename}`);
+			    document.body.appendChild(link);
+			    link.click();
+			    link.parentNode.removeChild(link);
+
+			    // clean up Url
+			    window.URL.revokeObjectURL(blobUrl);
+			})
 			.catch(function(res){ console.log(res) })
 
 			//generating pdf

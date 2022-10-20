@@ -355,8 +355,8 @@ app.post("/pdf", (req, res, next) =>{
 				'Content-Disposition',
 				'inline; filename "' + "PaySlip.pdf"  + '"'
 				)
-
-			doc.pipe(fs.createWriteStream(`payslip-${req.body.profileName}.pdf`)); // write to PDF
+			const fileName = `payslip-${req.body.profileName}.pdf`
+			doc.pipe(fs.createWriteStream(fileName)); // write to PDF
 			doc.pipe(res);                                       // HTTP response
 			//PDF Details
 			//doc.font('fonts/PalatinoBold.ttf')
@@ -400,6 +400,7 @@ app.post("/pdf", (req, res, next) =>{
 			//finalize the PDF and end the stream
 			doc.end();
 			//res.end();
+			res.download(`${__dirname}/${fileName}`);
 })
 
 let port = app.get("port");
