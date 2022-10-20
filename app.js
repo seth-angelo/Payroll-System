@@ -289,6 +289,7 @@ app.get("/employees", (req, res, next) => {
 		if (err) {
 			next(err);
 		} else {
+			console.log("fetched:", fetchedProfiles);
 			res.render('DUMMY_HRIS/employee-profiles', { profiles: fetchedProfiles });
 			console.log();
 		}
@@ -315,6 +316,7 @@ app.post("/save-profile", (req, res, next) => {
 	console.log("overtime hours:", body.overtime_hours);
 	console.log("undertime hours:", body.undertime_hours);
 	console.log("cash advance application:", body.cash_advance);
+	console.log("employee email:", body.employee_email);
 
 	Profile.create({
 		name: body.name,
@@ -333,7 +335,8 @@ app.post("/save-profile", (req, res, next) => {
 		penalties: body.penalties,
 		overtimeHours: body.overtime_hours,
 		undertimeHours: body.undertime_hours,
-		cashAdvance: body.cash_advance
+		cashAdvance: body.cash_advance,
+		employeeEmail: body.employee_email
 	}, (err, profile) => {
 		if (err) {
 			next(err);
@@ -356,7 +359,7 @@ app.post("/pdf", (req, res, next) =>{
 				'inline; filename "' + "PaySlip.pdf"  + '"'
 				)
 			const fileName = `payslip-${req.body.profileName}.pdf`
-			doc.pipe(fs.createWriteStream(fileName)); // write to PDF
+			//doc.pipe(fs.createWriteStream(fileName)); // write to PDF
 			doc.pipe(res);                                       // HTTP response
 			//PDF Details
 			//doc.font('fonts/PalatinoBold.ttf')
@@ -372,29 +375,29 @@ app.post("/pdf", (req, res, next) =>{
   			doc.moveDown();
   			doc.text(`Department: ${req.body.profileDepartment}`);
   			doc.moveDown();
-  			doc.text(`Payroll Period: ${req.body.profilePayrollPeriod}`);
+  			doc.text(`Payroll Period: ${req.body.profilePayrollPeriod}`,{align: 'right'});
   			doc.moveDown();
   			doc.text(`Basic Salary: ${req.body.displayBasicSalary}`);
   			doc.moveDown();
-  			doc.text(`Leave Deduction: ${req.body.displayLeaveDeduction}`);
+  			doc.text(`Leave Deduction: ${req.body.displayLeaveDeduction}`,{align: 'right'});
   			doc.moveDown();
   			doc.text(`Bonus/ Allowance: ${req.body.profileBonus}`);
   			doc.moveDown();
-  			doc.text(`Miscallaneous Penalties: ${req.body.profilePenalties}`);
+  			doc.text(`Miscallaneous Penalties: ${req.body.profilePenalties}`,{align: 'right'});
   			doc.moveDown();
   			doc.text(`Overtime Pay: ${req.body.displayOTP}`);
   			doc.moveDown();
-  			doc.text(`Undertime Penalty: ${req.body.displayUTP}`);
+  			doc.text(`Undertime Penalty: ${req.body.displayUTP}`,{align: 'right'});
   			doc.moveDown();
-  			doc.text(`Monthly Premium: ${req.body.displayMonthlyPremium}`);
+  			doc.text(`Monthly Premium: ${req.body.displayMonthlyPremium}`,{align: 'right'});
   			doc.moveDown();
-  			doc.text(`Employee Contribution: ${req.body.displayEmployeeContribution}`);
+  			doc.text(`Employee Contribution: ${req.body.displayEmployeeContribution}`,{align: 'right'});
   			doc.moveDown();
-  			doc.text(`Employee Share: ${req.body.displayEmployeeShare}`);
+  			doc.text(`Employee Share: ${req.body.displayEmployeeShare}`,{align: 'right'});
   			doc.moveDown();
   			doc.text(`Total Earnings: ${req.body.displayTotalEarnings}`);
   			doc.moveDown();
-  			doc.text(`Total Deductions: ${req.body.displayTotalDeductions}`);
+  			doc.text(`Total Deductions: ${req.body.displayTotalDeductions}`,{align: 'right'});
   			doc.moveDown();
   			doc.text(`Net Pay: ${req.body.displayNetPay}`);
 			//finalize the PDF and end the stream
@@ -402,6 +405,60 @@ app.post("/pdf", (req, res, next) =>{
 			//res.end();
 			res.download(`${__dirname}/${fileName}`);
 })
+
+
+.post("/sendPayslip", (req, res, next) => {
+	const temp = req.body;
+	const email = { email: temp.Username };
+	const secret = jwtSecret;
+	console.log("email:", req.body.profileEmployeeEmail);
+			const tranporter = nodemailer.createTransport({
+				host: 'smtp.gmail.com',
+				port: 465,
+				secure: true,
+				auth: {
+					user: 'softdevpaystation@gmail.com',
+					pass: 'ijpuvakcpoczjtuv'
+				},
+				tls: {
+					rejectUnauthorized: false
+				}
+			});
+			tranporter.sendMail({
+				from: `<softdevpaystation@gmail.com>`,
+				to: [req.body.profileEmployeeEmail],
+				subject: "PaySlip",
+				// text: `Click here to reset password: ${link}`,
+				html: `This is the payslip, attached TBA`,
+			}, (err, success) => {
+				if(err) {
+					next(err)
+					console.log('Error: \n' + err);
+				}
+				else {
+					console.log("Ok. : \n" + success.response);
+				}
+			});
+
+	// Admin.findOne(email)
+	// .then((retrieved) => {
+	// 	if(retrieved == null)
+	// 		throw new Error;
+	// 	else { // Sending email link
+	// 				}
+	// })
+	// .catch((err) => { // No email found in database
+	// next(err)
+	// console.log("No email scanned in db");
+	// res.render('Payroll_System/forgotconfirmation',
+	// { 
+	// 	Title: 'Password Reset',
+	// 	Description: null,
+	// 	ERROR: 'Email is not registered.'
+	// }
+	// )});
+});
+
 
 let port = app.get("port");
 app.listen(process.env.PORT || 5000, () => console.log(`Dummy HRIS running on port ${port}`));

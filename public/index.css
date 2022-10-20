@@ -480,3 +480,7 @@ section .title2 {
 	display: none;
 	flex-direction: column;
 }
+
+#employee-email {
+	z-index: 100;
+}

@@ -18,6 +18,7 @@ const profileSchema = new mongoose.Schema({
 	overtimeHours: Number,
 	undertimeHours: Number,
 	cashAdvance: Number,
+	employeeEmail: String
 });
 
 module.exports = mongoose.model('Profile', profileSchema);

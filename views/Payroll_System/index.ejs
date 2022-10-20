@@ -103,6 +103,7 @@
 						<div class="profile-overtimeHours" data-overtimehours=<%= profile.overtimeHours %>></div>
 						<div class="profile-undertimeHours" data-undertimehours=<%= profile.undertimeHours %>></div>
 						<div class="profile-cashAdvance" data-cashadvance=<%= profile.cashAdvance %>></div>
+						<div class="profile-employeeEmail" data-employeeemail=<%= profile.employeeEmail %>></div>
 
 						<h1><%= profile.name %></h1>
 						<%= profile.position %>
@@ -115,9 +116,10 @@
           </div>
 
           	<div id="calculation-info"></div>
+          	<div id="mailing-info"></div>
         	</div>
 
-        	<div id="mailing-info"></div>
+        	
         	</div>
 
 
@@ -157,6 +159,8 @@
 		const profileOvertimeHourss = document.getElementsByClassName("profile-overtimeHours");
 		const profileUndertimeHourss = document.getElementsByClassName("profile-undertimeHours");
 		const profileCashAdances = document.getElementsByClassName("profile-cashAdvance");
+		const profileEmployeeEmails = document.getElementsByClassName("profile-employeeEmail");
+
 		const employeeInfo = document.getElementById("employee-info");
 
 		let employeeIndex = 0;
@@ -191,6 +195,9 @@
 			const profileOvertimeHours = profileOvertimeHourss.item(i).dataset.overtimehours;
 			const profileUndertimeHours = profileUndertimeHourss.item(i).dataset.undertimehours;
 			const profileCashAdance = profileCashAdances.item(i).dataset.cashadvance;
+			const profileEmployeeEmail = profileEmployeeEmails.item(i).dataset.employeeemail;
+			console.log(profileEmployeeEmail);
+
 
 			btn.addEventListener('click', () => {
 				employeeInfo.innerHTML = `
@@ -210,6 +217,7 @@
 				<h1>Overtime Hours: ${profileOvertimeHours}</h1>
 				<h1>Undertime Hours: ${profileUndertimeHours}</h1>
 				<h1>Cash Advance Application: ${profileCashAdance}</h1>
+				<h1>Employee Email: ${profileEmployeeEmail}</h1>
 			`
 			employeeIndex = i;
 			// <h1>Total Working Days: ${profileTWDays}</h1>
@@ -487,6 +495,8 @@
 			pageName.innerHTML = 'Mail'
 
 			//gettiing data from employee profile
+			const profileEmployeeEmail = profileEmployeeEmails.item(employeeIndex).dataset.employeeemail;
+			//from employee profile - id
 			const profileName = profileNames.item(employeeIndex).dataset.name;
 			const profilePosition = profilePositions.item(employeeIndex).dataset.position;
 			const profileDepartment = profileDepartments.item(employeeIndex).dataset.department;
@@ -565,6 +575,23 @@
 
 			//generating pdf
 			//const PDFDocument = require('pdfkit');
+
+			//for sending payslip
+			fetch("/sendPayslip",
+			{
+    		headers: {
+	      		'Accept': 'application/json',
+	      		'Content-Type': 'application/json'
+ 	   		},
+		    method: "POST",
+		    body: JSON.stringify({
+		    	profileEmployeeEmail
+		    	})
+			})
+			.then(async function(res){ 
+							})
+			.catch(function(res){ console.log(res) })
+
 			
 		}
 	</script>
